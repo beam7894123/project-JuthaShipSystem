@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Journey;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,10 @@ class DocumentFactory extends Factory
      */
     public function definition(): array
     {
+        $status = array('PEDNING','APPROVED');
         return [
-            //
+            'journey_id' => Journey::find(rand(1,10)),
+            'status' => $status[array_rand($status)],
         ];
     }
 }

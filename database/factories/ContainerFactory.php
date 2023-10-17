@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Journey;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,11 @@ class ContainerFactory extends Factory
      */
     public function definition(): array
     {
+        $status = array('PENDING', 'READY', 'MISSING');
         return [
-            //
+            'company_name' => fake()->name(),
+            'status' => $status[array_rand($status)],
+            'journey_id' => Journey::find(rand(1,10))
         ];
     }
 }
