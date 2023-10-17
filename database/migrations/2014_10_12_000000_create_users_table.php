@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('imgPath')->nullable();
+            $table->string('imgPath')->default('images/defaultProfile.png');
             $table->enum('role',['ADMIN','CAPTAIN','ENGINEER','CHIEF','CREW']);
 
             $table->rememberToken();

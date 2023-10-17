@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('name');
+            $table->string('imagePath')->default('/images/defaultDocument.png');
             $table->foreignIdFor(\App\Models\Journey::class); //journey_id (fk)
             $table->enum('status',['PEDNING','APPROVED']);
         });
