@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Journey;
 use App\Models\Ship;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -23,7 +24,7 @@ class JourneyFactory extends Factory
             'arrive_date' => fake()->date(),
             'destination' => fake()->city(),
             'status' => $status[array_rand($status)],
-            'ship_id' => Ship::find(rand(1,10))
+            'ship_id' => Ship::find(rand(1,10)),
         ];
     }
 }

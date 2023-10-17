@@ -21,7 +21,7 @@ class ShipFactory extends Factory
             'model' => fake()->domainName(),
             'fuel' => fake()->numberBetween(0,100),
             'engine_status' => $status[array_rand($status)],
-            'container_capcity' => fake()->numberBetween(0,50),
+            'container_capacity' => fake()->numberBetween(0,50),
             'crew_capacity' => fake()->numberBetween(0,50)
         ];
     }

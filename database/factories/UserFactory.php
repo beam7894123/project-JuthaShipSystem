@@ -17,7 +17,7 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
-        $role = array('ADMIN','CAPTAIN','ENGINEER','CHIEF','CREW');
+        $role = array('CAPTAIN','ENGINEER','CHIEF','CREW');
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
