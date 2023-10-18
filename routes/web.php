@@ -42,7 +42,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/documents/destroy/{journey}/{documents}', [DocumentController::class, 'destroy'])->name('documents.destroy');
 
     //Journey system
-    Route::get('/journeys/index', [DocumentController::class, 'index'])->nmae('journeys.index');
+    Route::get('/journeys/index', [DocumentController::class, 'index'])->name('journeys.index');
     Route::get('/journeys/create', [DocumentController::class, 'create'])->name('journeys.create');
     Route::get('/journeys/view', [DocumentController::class, 'view'])->name('journeys.view');
     Route::get('/journeys/edit', [DocumentController::class, 'edit'])->name('journeys.edit');
