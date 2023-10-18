@@ -35,7 +35,14 @@ class DocumentController extends Controller
         ])->with('success', 'Your document has been added.');
     }
 
-    public function update(Request $request, Document $document, Journey $journey)
+    public function edit(Document $document)
+    {
+        return view('documents.edit', [
+            'document' => $document
+        ]);
+    }
+
+    public function update(Request $request, Journey $journey, Document $document)
     {
         $request->validate([
             'status' => ['required', 'string', 'min:1']
@@ -43,9 +50,13 @@ class DocumentController extends Controller
 
         $document->status = $request->get('status');
         $document->save();
+
+        return redirect()->route('documents.index', [
+            'journey' => $journey
+        ])->with('success', 'Your document has been updated.');
     }
 
-    public function destroy(Document $document, Journey $journey)
+    public function destroy(Journey $journey, Document $document)
     {
         $document->delete();
 
