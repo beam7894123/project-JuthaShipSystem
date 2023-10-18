@@ -56,4 +56,14 @@ class ContainerController extends Controller
             'containers' => $containers
         ])->with('success', 'Your container has been updated.');
     }
+
+    public function destroy(Container $container)
+    {
+        $container->delete();
+
+        $containers = Container::get();
+        return redirect()->route('containers.index' , [
+            'containers' => $containers
+        ])->with('success', 'Your container has been deleted.');
+    }
 }
