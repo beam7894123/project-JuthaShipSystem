@@ -31,17 +31,25 @@ Route::middleware('auth')->group(function () {
 
     //Containers system
     Route::get('/containers', [ContainerController::class, 'index'])->name('containers.index');
-    Route::get('/containers/create', [ContainerController::class, 'create'])->name('containers.create');
+    Route::post('/containers/create', [ContainerController::class, 'create'])->name('containers.create');
     Route::put('/containers/update/{journey}/{container}', [ContainerController::class, 'update'])->name('containers.update');
 
     //Document system
     Route::get('/documents/{journey}', [DocumentController::class, 'index'])->name('documents.index');
-    Route::get('/documents/store/{journey}', [DocumentController::class, 'store'])->name('documents.store');
+    Route::post('/documents/store/{journey}', [DocumentController::class, 'store'])->name('documents.store');
     Route::get('/documents/edit/{document}', [DocumentController::class, 'edit'])->name('documents.edit');
     Route::put('/documents/update/{journey}/{documents}', [DocumentController::class, 'update'])->name('documents.update');
     Route::get('/documents/destroy/{journey}/{documents}', [DocumentController::class, 'destroy'])->name('documents.destroy');
 
     //Journey system
+    Route::get('/journeys/index', [DocumentController::class, 'index'])->nmae('journeys.index');
+    Route::get('/journeys/create', [DocumentController::class, 'create'])->name('journeys.create');
+    Route::get('/journeys/view', [DocumentController::class, 'view'])->name('journeys.view');
+    Route::get('/journeys/edit', [DocumentController::class, 'edit'])->name('journeys.edit');
+    Route::post('/documents/store', [DocumentController::class, 'store'])->name('journeys.store');
+    Route::put('/documents/update/{journey}', [DocumentController::class, 'update'])->name('journeys.update');
+
+    //Ship system
 
 
 });
