@@ -16,7 +16,7 @@ class ShipFactory extends Factory
      */
     public function definition(): array
     {
-        $status = array('DOWN','READY');
+        $status = array('DOWN','READY','PENDING');
         return [
             'model' => fake()->domainName(),
             'fuel' => fake()->numberBetween(0,100),

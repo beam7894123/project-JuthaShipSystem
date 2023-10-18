@@ -16,7 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->integer('fuel');
             $table->string('model');
-            $table->enum('engine_status',['DOWN','READY']);
+            $table->enum('engine_status',['DOWN','READY', 'PENDING']);
             $table->integer('container_capacity');
             $table->integer('crew_capacity');
         });
