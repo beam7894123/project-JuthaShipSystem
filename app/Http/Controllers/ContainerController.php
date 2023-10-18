@@ -36,9 +36,9 @@ class ContainerController extends Controller
         $container->save();
 
         $containers = Container::get();
-        return view('containers.index' , [
+        return redirect()->route('containers.index' , [
             'containers' => $containers
-        ]);
+        ])->with('success', 'Your container has been added.');
     }
 
     public function update(Request $request, Container $container, Journey $journey)
@@ -52,8 +52,8 @@ class ContainerController extends Controller
         $container->save();
 
         $containers = Container::get();
-        return view('containers.index' , [
+        return redirect()->route('containers.index' , [
             'containers' => $containers
-        ]);
+        ])->with('success', 'Your container has been updated.');
     }
 }
