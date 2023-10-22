@@ -3,7 +3,7 @@
 use App\Http\Controllers\ContainerController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\JourneyController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CrewController;
 use App\Http\Controllers\ShipController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,9 +27,11 @@ Route::get('/', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    //Crews Profile system
+    Route::get('/crews', [CrewController::class, 'index'])->name('crews.index');
+    Route::get('/profile', [CrewController::class, 'edit'])->name('crews.edit');
+    Route::patch('/profile', [CrewController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [CrewController::class, 'destroy'])->name('profile.destroy');
 
     //Containers system
     Route::get('/containers', [ContainerController::class, 'index'])->name('containers.index');
