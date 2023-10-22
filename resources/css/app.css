@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bg-hex-color-010066 {
+    background-color: #010066;
+}
