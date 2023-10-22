@@ -5,15 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Document;
 use App\Models\Journey;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DocumentController extends Controller
 {
-    public function index(Journey $journey)
-    {
-        return view('documents.index', [
-            'journey' => $journey
-        ]);
-    }
+    public function index()
+{
+$user = Auth::user();
+$journey = Journey::where($user->journey_id,'=','id');
+
+return view('documents.index', [
+'journey' => $journey
+]);
+}
 
     public function store(Request $request, Journey $journey)
     {
