@@ -27,6 +27,7 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
             'role' => $role[array_rand($role)],
             'status' => $status[array_rand($status)],
+            'journey_id' => fake()->numberBetween(1,10)
         ];
     }
 
