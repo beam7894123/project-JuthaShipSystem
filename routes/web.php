@@ -21,6 +21,9 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/', function () {
 //    return view('dashboard');
 //});
+Route::controller(CrewController::class)->group(function () {
+    Route::post('/crews/{user}', [CrewController::class, 'pending'])->name('crews.pending');
+});
 
 Route::get('/', function () {
     return view('dashboard');
@@ -29,6 +32,9 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
     //Crews Profile system
     Route::get('/crews', [CrewController::class, 'index'])->name('crews.index');
+
+    Route::get('/crews/{user}', [CrewController::class, 'ready'])->name('crews.ready');
+    Route::get('/crews/{user}', [CrewController::class, 'notready'])->name('crews.notready');
     Route::get('/profile', [CrewController::class, 'edit'])->name('crews.edit');
     Route::patch('/profile', [CrewController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [CrewController::class, 'destroy'])->name('profile.destroy');
