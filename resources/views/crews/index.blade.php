@@ -45,7 +45,7 @@
             <div class="overflow-y-auto max-h-128">
                 <ul class="divide-y divide-gray-200">
                     @foreach ($users as $user)
-                        <li class="flex items-center py-4 px-6 hover:bg-[#c0cfff] transition duration-300">
+                        <li class="flex items-center py-4 px-6 hover:bg-[#819eff] transition duration-300">
                             <div class="flex-1">
                                 <a href="{{ route('crews.index', ['user' => $user]) }}">
                                     <h3 class="text-3xl font-medium text-gray-800">{{ $user->name }}</h3>
@@ -59,7 +59,7 @@
                                 <div class="grid grid-cols-2 gap-4 p-4">
                                     @if($user->status !== 'PENDING')
                                         <a href="{{ route('crews.pending', ['user' => $user]) }}"
-                                           class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
+                                           class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg bg-[#c0cfff] hover:bg-white transition duration-300 m-4">
                                             <div class="p-6 text-black text-center">
                                                 Pending
                                             </div>
@@ -67,7 +67,7 @@
                                     @endif
                                     @if($user->status !== 'READY')
                                     <a href="{{ route('crews.ready', ['user' => $user]) }}"
-                                       class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
+                                       class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg bg-[#c0cfff] hover:bg-green-500 transition duration-300 m-4">
                                         <div class="p-6 text-black text-center">
                                             Ready
                                         </div>
@@ -75,7 +75,7 @@
                                     @endif
                                     @if($user->status !== 'NOTREADY')
                                     <a href="{{ route('crews.pending', ['user' => $user]) }}"
-                                       class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
+                                       class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg bg-[#c0cfff] hover:bg-red-500 transition duration-300 m-4">
                                         <div class="p-6 text-black text-center">
                                             Not Ready
                                         </div>

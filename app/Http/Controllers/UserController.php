@@ -32,7 +32,7 @@ class UserController extends Controller
         return redirect()->route('crews.index' , [
             'users' => $users,
             'usersForAdmin' => $usersForAdmin
-        ])->with('success', 'The status has been updated.');
+        ])->with('success', "The status of " . $user->name . " has been updated.");
     }
 
 
@@ -49,7 +49,7 @@ class UserController extends Controller
         return redirect()->route('crews.index' , [
             'users' => $users,
             'usersForAdmin' => $usersForAdmin
-        ])->with('success', 'The status has been updated.');
+        ])->with('success', "The status of " . $user->name . " has been updated.");
     }
 
     public function notready(User $user)
@@ -65,7 +65,7 @@ class UserController extends Controller
         return redirect()->route('crews.index' , [
             'users' => $users,
             'usersForAdmin' => $usersForAdmin
-        ])->with('success', 'The status has been updated.');
+        ])->with('success', "The status of " . $user->name . " has been updated.");
     }
 
 }
