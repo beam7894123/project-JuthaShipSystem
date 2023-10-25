@@ -15,7 +15,7 @@ class CrewController extends Controller
 
     public function index()
     {
-        $users = User::get();
+        $users = User::where('role', 'CREW')->get();
         return view('crews.index' , [
             'users' => $users
         ]);

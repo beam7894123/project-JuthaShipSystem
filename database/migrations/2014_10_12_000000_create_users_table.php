@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('imgPath')->default('images/defaultProfile.png');
             $table->enum('role',['ADMIN','CAPTAIN','ENGINEER','CHIEF','CREW']);
+            $table->enum('status',['PENDING','READY','NOTREADY']);
             $table->foreignIdFor(\App\Models\Journey::class)->nullable(); //journey_id
 
             $table->rememberToken();
