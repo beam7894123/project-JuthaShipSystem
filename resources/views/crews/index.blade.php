@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-{{--    @include('alert')--}}
+@include('alert')
 {{--   ADMIN ----------------------------------------------}}
     @if(Auth::user()->isAdmin())
         <div id="user_list" class="bg-white rounded-md max-w-full mx-auto mt-8">
@@ -58,11 +58,28 @@
 
                                 <div class="grid grid-cols-2 gap-4 p-4">
                                     @if($user->status !== 'PENDING')
-                                        <a href="{{  route('crews.pending' , ['user' => $user]) }}" class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
+                                        <a href="{{ route('crews.pending', ['user' => $user]) }}"
+                                           class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
                                             <div class="p-6 text-black text-center">
                                                 Pending
                                             </div>
                                         </a>
+                                    @endif
+                                    @if($user->status !== 'READY')
+                                    <a href="{{ route('crews.ready', ['user' => $user]) }}"
+                                       class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
+                                        <div class="p-6 text-black text-center">
+                                            Ready
+                                        </div>
+                                    </a>
+                                    @endif
+                                    @if($user->status !== 'NOTREADY')
+                                    <a href="{{ route('crews.pending', ['user' => $user]) }}"
+                                       class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
+                                        <div class="p-6 text-black text-center">
+                                            Not Ready
+                                        </div>
+                                    </a>
                                     @endif
 
                                 </div>

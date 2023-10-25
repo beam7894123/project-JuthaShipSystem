@@ -3,8 +3,9 @@
 use App\Http\Controllers\ContainerController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\JourneyController;
-use App\Http\Controllers\CrewController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShipController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,23 +22,22 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/', function () {
 //    return view('dashboard');
 //});
-Route::controller(CrewController::class)->group(function () {
-    Route::post('/crews/{user}', [CrewController::class, 'pending'])->name('crews.pending');
-});
 
 Route::get('/', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    //Crews Profile system
-    Route::get('/crews', [CrewController::class, 'index'])->name('crews.index');
+    //Profile system
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/crews/{user}', [CrewController::class, 'ready'])->name('crews.ready');
-    Route::get('/crews/{user}', [CrewController::class, 'notready'])->name('crews.notready');
-    Route::get('/profile', [CrewController::class, 'edit'])->name('crews.edit');
-    Route::patch('/profile', [CrewController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [CrewController::class, 'destroy'])->name('profile.destroy');
+    //User system
+    Route::get('/crews', [UserController::class, 'index'])->name('crews.index');
+    Route::get('/crews/pending/{user}', [UserController::class, 'pending'])->name('crews.pending');
+    Route::get('/crews/ready/{user}', [UserController::class, 'ready'])->name('crews.ready');
+    Route::get('/crews/notready/{user}', [UserController::class, 'notready'])->name('crews.notready');
 
     //Containers system
     Route::get('/containers', [ContainerController::class, 'index'])->name('containers.index');
