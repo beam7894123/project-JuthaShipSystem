@@ -125,6 +125,18 @@ class ShipController extends Controller
         return redirect()->route('ships.assignment', [
             'ships' => $ships,
             'journey' => $journey
-        ])->with('success', 'Your ship has been updated.');
+        ])->with('success', 'A ship has been assigned.');
+    }
+
+    public function unassign(Journey $journey)
+    {
+        $journey->ship_id = null;
+        $journey->save();
+
+        $ships = Ship::get();
+        return redirect()->route('ships.assignment', [
+            'ships' => $ships,
+            'journey' => $journey
+        ])->with('success', 'A ship has been unassigned.');
     }
 }
