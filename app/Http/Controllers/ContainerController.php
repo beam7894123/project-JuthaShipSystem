@@ -127,4 +127,35 @@ class ContainerController extends Controller
             'containers' => $containers
         ])->with('success', 'Your container has been updated.');
     }
+
+
+
+    public function assignment(Journey $journey)
+    {
+        return view('containers.assignment', [
+            'journey' => $journey,
+        ]);
+    }
+
+    public function assign(Container $container, Journey $journey)
+    {
+        $container->journey_id = $journey->id;
+        $container->save();
+
+        $containers = Container::get();
+        return redirect()->route('containers.index' , [
+            'containers' => $containers
+        ])->with('success', 'Your container has been assigned.');
+    }
+
+    public function unassign(Container $container)
+    {
+        $container->journey_id = null;
+        $container->save();
+
+        $containers = Container::get();
+        return redirect()->route('containers.index' , [
+            'containers' => $containers
+        ])->with('success', 'Your container has been unassigned.');
+    }
 }

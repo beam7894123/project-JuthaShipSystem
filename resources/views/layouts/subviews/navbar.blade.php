@@ -7,6 +7,11 @@
         </div>
         <div class="flex items-center" id="acc">
             @if( Auth::check() )
+                <div class="w-1/2 pr-4 flex flex-col items-center w-16">
+                    <a href="{{ route('crews.view', ['user' => Auth::user() ]) }}">
+                        <img src="{{ asset('storage/' . Auth::user()->imgPath) }}" alt="Profile Picture" class="max-w-full h-1/3 object-contain rounded-full">
+                    </a>
+                </div>
                 <div class="mr-4">
                     <a href="{{ route('crews.view', ['user' => Auth::user() ]) }}">
                         {{ Auth::user()->name }}

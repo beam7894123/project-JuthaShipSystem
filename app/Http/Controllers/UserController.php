@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Journey;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -171,4 +172,36 @@ class UserController extends Controller
         ])->with('success', "The status of " . $user->name . " has been updated.");
     }
 
+
+    public function assignment(Journey $journey)
+    {
+        $users = User::get();
+        return view('crews.assignment', [
+            'journey' => $journey,
+            'users' => $users
+        ]);
+    }
+
+    public function assign(Journey $journey, User $user)
+    {
+        $user->journey_id = $journey->id;
+        $user->save();
+
+        $users = User::get();
+        return redirect()->route('crews.assignment', [
+            'journey' => $journey,
+            'users' => $users
+        ])->with('success', 'User has been assigned.');
+    }
+
+    public function unassign(User $user)
+    {
+        $user->journey_id = null;
+        $user->save();
+
+        $users = User::get();
+        return redirect()->route('crews.index' , [
+            'users' => $users
+        ])->with('success', 'User has been unassigned.');
+    }
 }

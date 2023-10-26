@@ -1,71 +1,3 @@
-{{--@extends('layouts.main')--}}
-
-{{--@section('content')--}}
-{{--    @include('alert')--}}
-{{--    <div class="p-4 flex justify-between">--}}
-{{--        <a href="{{ route('dashboard') }}" class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">--}}
-{{--            <div class="p-2 text-black text-center">--}}
-{{--                < Back--}}
-{{--            </div>--}}
-{{--        </a>--}}
-{{--    </div>--}}
-{{--        <div id="list" class="bg-white rounded-md max-w-full mx-auto mt-8">--}}
-{{--            <div class="bg-[#011147] py-2 px-4">--}}
-{{--                <h2 class="text-xl font-semibold text-white">Documents List</h2>--}}
-{{--            </div>--}}
-{{--            <div class="overflow-y-auto max-h-208">--}}
-{{--                <ul class="divide-y divide-gray-200">--}}
-{{--                    @foreach ($documents as $document)--}}
-{{--                        <li class="flex items-center py-4 px-6 hover:bg-[#819eff] transition duration-300">--}}
-{{--                            <div class="flex-1 items-center">--}}
-
-{{--                                    <img src="{{ asset($document->imagePath) }}" alt="IMG" class="rounded-lg shadow-lg shadow-xl h-192 " style="max-width: 100%; max-height: 100%;" />--}}
-{{--                                    <h3 class="text-3xl font-medium text-gray-800">{{ $document->status }}</h3>--}}
-{{--                                <p class="text-gray-600 text-base"></p>--}}
-{{--                            </div>--}}
-
-{{--                            <span class="text-gray-400"></span>--}}
-
-
-{{--                            <div class="grid grid-cols-2 gap-4 p-4">--}}
-{{--                                @if($document->status !== 'APPROVED')--}}
-{{--                                    <a href="{{ route('documents.approved', ['document' => $document]) }}"--}}
-{{--                                       class="block p-2 text-xl bg-white  shadow-sm sm:rounded-lg bg-[#c0cfff] hover:bg-green-500 transition duration-300 m-4">--}}
-{{--                                        <div class="p-6 text-black text-center">--}}
-{{--                                            APPROVED--}}
-{{--                                        </div>--}}
-{{--                                    </a>--}}
-{{--                                @endif--}}
-{{--                                @if($document->status !== 'PENDING')--}}
-
-{{--                                    <a href="{{ route('documents.pending', ['document' => $document]) }}"--}}
-{{--                                       class="block p-2 text-xl bg-white shadow-sm sm:rounded-lg bg-[#c0cfff] hover:bg-red-500 transition duration-300 m-4">--}}
-{{--                                        <div class="p-6 text-black text-center">--}}
-{{--                                            PENDING--}}
-{{--                                        </div>--}}
-{{--                                    </a>--}}
-{{--                                @endif--}}
-{{--                            </div>--}}
-{{--                        </li>--}}
-{{--                    @endforeach--}}
-{{--                </ul>--}}
-{{--            </div>--}}
-{{--            @error('user')--}}
-{{--            <p class="text-red-500 text-sm">{{ $message }}</p>--}}
-{{--            @enderror--}}
-{{--        </div>--}}
-
-{{--        <div class="p-4 flex justify-between">--}}
-{{--            <a href="{{ route('dashboard') }}" class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">--}}
-{{--                <div class="p-2 text-black text-center">--}}
-{{--                    < Back--}}
-{{--                </div>--}}
-{{--            </a>--}}
-{{--        </div>--}}
-
-{{--@endsection--}}
-
-
 @extends('layouts.main')
 
 @section('content')
@@ -77,7 +9,7 @@
         <div class="border-b border-gray-400 mt-4"></div>
         <div class="mx-6 my-4 flex flex-col">
             <!-- INSERT HERE!!! -->
-
+            @if(Auth::user()->role === 'CAPTAIN')
             <form method="POST" action="{{route('documents.store' , ['journey' => $journey ])}}" enctype="multipart/form-data">
                 @csrf
                 @method('POST')
@@ -98,6 +30,7 @@
                 </div>
                 <!-- END -->
             </form>
+            @endif
 
             <div class="w-auto mx-auto px-6 py-6 rounded-lg">
                 <div class="flex flex-wrap">
@@ -105,6 +38,7 @@
                         <div class="relative h-48 w-auto rounded-lg shadow-xl m-5">
                             <img src="{{ asset('storage/'. $document->imagePath) }}" alt="Image" class="w-full h-full object-cover rounded-lg">
                             <div class="absolute top-2 right-2">
+                                @if(Auth::user->role === 'CAPTAIN')
                                 <form method="POST" action="{{ route('documents.destroy', ['document' => $document]) }}">
                                     @csrf
                                     @method('delete')
@@ -114,15 +48,13 @@
                                         </svg>
                                     </button>
                                 </form>
+                                @endif
                             </div>
                         </div>
                     @endforeach
                 </div>
             </div>
 
-            <div class="mt-4">
-{{--                {{$galleries->links()}}--}}
-            </div>
 
             <div class="p-4 flex justify-between">
                 <a href="{{ route('dashboard') }}" class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">

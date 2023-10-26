@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Journey;
 use App\Models\Ship;
 use Illuminate\Http\Request;
 
@@ -104,5 +105,26 @@ class ShipController extends Controller
         $ship->delete();
 
         return redirect()->route('ships.index')->with('success', 'Your ship has been deleted.');
+    }
+
+    public function assignment(Journey $journey)
+    {
+        $ships = Ship::get();
+        return view('ships.assignment', [
+            'ships' => $ships,
+            'journey' => $journey
+        ]);
+    }
+
+    public function assign(Journey $journey, Ship $ship)
+    {
+        $journey->ship_id = $ship->id;
+        $journey->save();
+
+        $ships = Ship::get();
+        return redirect()->route('ships.assignment', [
+            'ships' => $ships,
+            'journey' => $journey
+        ])->with('success', 'Your ship has been updated.');
     }
 }
