@@ -1,5 +1,5 @@
 @extends('layouts.main')
-
+@include('alert')
 @section('content')
 <form action="{{ route('ships.update', ['ship' => $ship]) }}" method="POST" enctype="multipart/form-data">
     @csrf
@@ -14,7 +14,7 @@
                     <!-- Input zone for Model -->
                     <div class="grid grid-cols-2 items-center p-6 text-3xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4 text-black">
                         <div class="text-center font-semibold mb-4">Ship Model</div>
-                        <input type="text" class="block p-4 bg-white border rounded-md focus:outline-none focus:ring-2 focus:ring-[#c0cfff] " placeholder="Model" value={{ $ship->model }}/>
+                        <input type="text" class="block p-4 bg-white border rounded-md focus:outline-none focus:ring-2 focus:ring-[#c0cfff] " placeholder="Model" value={{ $ship->model }}>
                     </div>
 
                     <!-- Input zone for Crew Capacity -->
@@ -35,7 +35,7 @@
     </div>
 
     <div class="p-4 flex justify-between">
-        <a href="{{ route('dashboard') }}" class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
+        <a href="{{ route('ships.index') }}" class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
             <div class="p-2 text-black text-center">
                 < Back
             </div>
@@ -43,7 +43,6 @@
         <button type="submit" class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
             Confirm >
         </button>
-    </div>
     </div>
 </form>
 @endsection

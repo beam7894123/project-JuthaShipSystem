@@ -68,7 +68,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/ships', [ShipController::class, 'index'])->name('ships.index');
     Route::get('/ships/create', [ShipController::class, 'create'])->name('ships.create');
     Route::get('/ships/view/{ship_id}', [ShipController::class, 'view'])->name('ships.view');
-    Route::get('/ships/edit', [ShipController::class, 'edit'])->name('ships.edit');
+    Route::get('/ships/edit/{ship}', [ShipController::class, 'edit'])->name('ships.edit');
     Route::get('/ships/updatePage/{ship}', [ShipController::class, 'updatePage'])->name('ships.updatePage');
     Route::post('/ships/store', [ShipController::class, 'store'])->name('ships.store');
     Route::put('/ships/update/{ship}', [ShipController::class, 'update'])->name('ships.update');
