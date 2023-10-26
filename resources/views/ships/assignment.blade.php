@@ -2,6 +2,7 @@
 
 @section('content')
     @include('alert')
+@if($currentship)
     <div id="user_list_notAdmin" class="bg-white rounded-md max-w-full mx-32 mt-8">
         <div class="bg-[#011147] py-2 px-4">
             <h2 class="text-xl font-semibold text-white">Ship Inuse</h2>
@@ -33,6 +34,7 @@
         <p class="text-red-500 text-sm">{{ $message }}</p>
         @enderror
     </div>
+@endif
     <div id="user_list_notAdmin" class="bg-white rounded-md max-w-full mx-32 mt-8">
         <div class="bg-[#011147] py-2 px-4">
             <h2 class="text-xl font-semibold text-white">Ship List</h2>
@@ -42,10 +44,10 @@
                 @foreach ($ships as $ship)
                     <li class="flex items-center py-4 px-6 hover:bg-[#819eff] transition duration-300">
                         <div class="flex-1">
-                            <a href="{{ route('ships.edit', ['ship' => $ship]) }}">
+                            <p href="{{ route('ships.edit', ['ship' => $ship]) }}">
                                 <h3 class="text-3xl font-medium text-gray-800">{{ $ship->model }}</h3>
                                 <h3 class="text-xl font-sm text-gray-800">{{ $ship->status }}</h3>
-                            </a>
+                            </p>
                             <p class="text-gray-600 text-base"></p>
                         </div>
                         <span class="text-gray-400"></span>

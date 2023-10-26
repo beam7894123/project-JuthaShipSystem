@@ -6,7 +6,6 @@ use App\Models\Journey;
 use App\Models\Ship;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Psy\Util\Str;
 
 class JourneyController extends Controller
 {
