@@ -8,7 +8,7 @@
             <div class="w-1/2">
                 <div id="ship_list" class="bg-white rounded-md max-w-full mx-auto mt-8 overflow-y-auto">
                     <div class="bg-[#011147] py-2 px-4">
-                        <h2 class="text-xl font-semibold text-white">Ship create details</h2>
+                        <h2 class="text-xl font-semibold text-white">Create Ship details</h2>
                     </div>
                     <div class="p-4">
                         <!-- Input zone for Model -->

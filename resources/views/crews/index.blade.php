@@ -74,7 +74,7 @@
                                     </a>
                                     @endif
                                     @if($user->status !== 'NOTREADY')
-                                    <a href="{{ route('crews.pending', ['user' => $user]) }}"
+                                    <a href="{{ route('crews.notready', ['user' => $user]) }}"
                                        class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg bg-[#c0cfff] hover:bg-red-500 transition duration-300 m-4">
                                         <div class="p-6 text-black text-center">
                                             Not Ready

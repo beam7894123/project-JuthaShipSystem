@@ -149,7 +149,7 @@ class UserController extends Controller
     {
         $user->status = 'NOTREADY';
         $user->save();
-        dd($user);
+//        dd($user);
 
         $users = User::where('journey_id', Auth::user()->journey_id)
             ->where('role', 'CREW')
