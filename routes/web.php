@@ -74,9 +74,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/journeys/finish/{journey_id}', [JourneyController::class, 'finish'])->name('journeys.finish');
 
     //assign system
-    Route::get('/assign/ship/{journey}', [ShipController::class, 'assignment'])->name('ships.assignment');
-    Route::get('/assign/crew/{journey}', [UserController::class, 'assignment'])->name('crews.assignment');
-    Route::get('/assign/container/{journey}', [ContainerController::class, 'assignment'])->name('containers.assignment');
+    Route::get('/assignment/ship/{journey}', [ShipController::class, 'assignment'])->name('ships.assignment');
+    Route::get('/assign/ship/{journey}/{ship}', [ShipController::class, 'assign'])->name('ships.assign');
+    Route::get('/unassign/ship/{journey}/{ship}', [ShipController::class, 'unassign'])->name('ships.unassign');
+
+    Route::get('/assignment/crew/{journey}', [UserController::class, 'assignment'])->name('crews.assignment');
+    Route::get('/assignment/container/{journey}', [ContainerController::class, 'assignment'])->name('containers.assignment');
     Route::get('/journeys/edit/{journey}', [JourneyController::class, 'edit'])->name('journeys.edit');
 
     //Ship system
