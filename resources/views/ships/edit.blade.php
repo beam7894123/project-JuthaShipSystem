@@ -14,7 +14,7 @@
                     <!-- Input zone for Model -->
                     <div class="grid grid-cols-2 items-center p-6 text-3xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4 text-black">
                         <div class="text-center font-semibold mb-4">Ship Model</div>
-                        <input type="text" class="block p-4 bg-white border rounded-md focus:outline-none focus:ring-2 focus:ring-[#c0cfff] " placeholder="Model" value={{ $ship->model }}>
+                        <input type="text" name="model" id="model" class="block p-4 bg-white border rounded-md focus:outline-none focus:ring-2 focus:ring-[#c0cfff] " placeholder="Model" value={{ $ship->model }}>
                     </div>
 
                     <!-- Input zone for Crew Capacity -->

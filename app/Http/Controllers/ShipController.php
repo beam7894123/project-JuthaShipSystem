@@ -47,8 +47,8 @@ class ShipController extends Controller
     {
         $request->validate([
             'model' => ['required', 'string', 'min:1'],
-            'container_capacity' => ['required', 'min:10'],
-            'crew_capacity' => ['required', 'min:10']
+            'container_capacity' => ['required','integer', 'min:10'],
+            'crew_capacity' => ['required','integer' ,'min:10']
         ]);
 
         $ship = New Ship();
@@ -60,8 +60,10 @@ class ShipController extends Controller
 
         $ship->save();
 
-        return redirect()->route('ships.view', [
-            'ship' => $ship
+
+        $ships = Ship::get();
+        return redirect()->route('ships.index', [
+            'ships' => $ships
         ])->with('success', 'Your ship has been created.');
     }
 
@@ -69,8 +71,8 @@ class ShipController extends Controller
     {
         $request->validate([
             'model' => ['required', 'string', 'min:1'],
-            'container_capacity' => ['required', 'min:10'],
-            'crew_capacity' => ['required', 'min:10'],
+            'container_capacity' => ['required','integer', 'min:10'],
+            'crew_capacity' => ['required','integer' ,'min:10']
         ]);
 
         $ship->model = $request->get('model');
@@ -79,8 +81,9 @@ class ShipController extends Controller
 
         $ship->save();
 
-        return redirect()->route('ships.view', [
-            'ship_id' => $ship->id
+        $ships = Ship::get();
+        return redirect()->route('ships.index', [
+            'ships' => $ships
         ])->with('success', 'Your ship has been updated.');
     }
 
