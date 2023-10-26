@@ -132,9 +132,6 @@
                     < Back
                 </div>
             </a>
-            <button type="submit" class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
-                Save >
-            </button>
         </div>
     @endif
 

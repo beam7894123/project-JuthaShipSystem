@@ -14,26 +14,9 @@
                         <!-- Input zone for company_name -->
                         <div class="grid grid-cols-2 items-center p-6 text-3xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4 text-black">
                             <div class="text-center font-semibold mb-4">Company name</div>
-                            <x-text-input type="text" id="company_name" name="company_name" class="block p-4 bg-white border rounded-md focus:outline-none focus:ring-2 focus:ring-[#c0cfff] " placeholder="your company name" />
+                            <x-text-input type="text" id="company_name" name="company_name" class="block p-4 bg-white border rounded-md focus:outline-none focus:ring-2 focus:ring-[#c0cfff] " placeholder="Insert company name" />
                             <x-input-error class="mt-2" :messages="$errors->get('company_name')" />
                         </div>
-                        {{--                    <div class="mt-4">--}}
-                        {{--                        <x-input-label for="company_name" :value="__('Company name')" />--}}
-                        {{--                        <x-text-input id="company_name" name="company_name" type="text" class="mt-1 block w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" :value="old('company_name', $container->company_name)"  required autofocus autocomplete="company_name" />--}}
-                        {{--                        <x-input-error class="mt-2" :messages="$errors->get('company_name')" />--}}
-                        {{--                    </div>--}}
-
-                        {{--                    <!-- Input zone for Crew Capacity -->--}}
-                        {{--                    <div class="grid grid-cols-2 items-center p-6 text-3xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4 text-black">--}}
-                        {{--                        <div class="text-center font-semibold mb-4">Crew Capacity</div>--}}
-                        {{--                        <input type="integer" name="crew_capacity" id="crew_capacity" class="block w-full p-4 bg-white border rounded-md focus:outline-none focus:ring-2 focus:ring-[#c0cfff]" placeholder="Crew Capacity" value="{{ $ship->crew_capacity }}"/>--}}
-                        {{--                    </div>--}}
-
-                        {{--                    <!-- Input zone for Container -->--}}
-                        {{--                    <div class="grid grid-cols-2 items-center p-6 text-3xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4 text-black">--}}
-                        {{--                        <div class="text-center font-semibold mb-4">Container Capacity</div>--}}
-                        {{--                        <input type="integer" name="container_capacity" id="container_capacity" class="block w-full p-4 bg-white border rounded-md focus:outline-none focus:ring-2 focus:ring-[#c0cfff]" placeholder="Container Capacity" value="{{ $ship->container_capacity }}"/>--}}
-                        {{--                    </div>--}}
                     </div>
                 </div>
 
