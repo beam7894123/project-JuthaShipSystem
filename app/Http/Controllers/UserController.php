@@ -22,10 +22,10 @@ class UserController extends Controller
         ]);
     }
 
-    public function edit(Request $request)
+    public function edit(User $user)
     {
         return view('crews.edit', [
-            'user' => $request->user(),
+            'user' => $user,
         ]);
     }
 

@@ -8,6 +8,7 @@
             @csrf
             @method('PUT')
 
+{{--            {{ json_encode($user , JSON_PRETTY_PRINT) }}--}}
             <h1 class="text-4xl mb-6 py-3 text-white">
                 <strong>
                 Edit User Information
@@ -29,7 +30,7 @@
                     <!-- Name Input -->
                     <div class="mt-4">
                         <x-input-label for="name" :value="__('Name')" />
-                        <x-text-input id="name" name="name" type="text" class="mt-1 block w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" :value="old('name', $user->name)" required autofocus autocomplete="name" />
+                        <x-text-input id="name" name="name" type="text" class="mt-1 block w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" :value="old('name', $user->name)"  required autofocus autocomplete="name" />
                         <x-input-error class="mt-2" :messages="$errors->get('name')" />
                     </div>
 
@@ -44,7 +45,7 @@
                     <div class="mt-4">
                         <x-input-label for="role" :value="__('Role')" />
                         <select id="role" name="role" class="w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                            <option value="ADMIN">ADMIN</option>
+{{--                            <option value="ADMIN">ADMIN</option>--}}
                             <option value="CAPTAIN">CAPTAIN</option>
                             <option value="CHIEF">CHIEF</option>
                             <option value="CREW">CREW</option>
