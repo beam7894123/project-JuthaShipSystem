@@ -123,9 +123,17 @@ class ShipController extends Controller
 
     public function assign(Journey $journey, Ship $ship)
     {
+        if($journey->ship_id != null){
+            $tempship = Ship::where('id', $journey->ship_id)->first();
+            $tempship->journey_id = null;
+            $tempship->save();
+        }
+
         $journey->ship_id = $ship->id;
         $journey->save();
+
         $ship->journey_id = $journey->id;
+        $ship->save();
 
         $ships = Ship::where('journey_id', null)->get();
         $currentship = Ship::where('id', $journey->ship_id)->first();
