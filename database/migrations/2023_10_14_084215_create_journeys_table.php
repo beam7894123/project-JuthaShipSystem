@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('arrive_date');
             $table->string('destination');
             $table->enum('status',['UPCOMING','ONGOING','COMPLETED','CANCELLED']);
-            $table->foreignIdFor(\App\Models\Ship::class); //ship_id
+            $table->foreignIdFor(\App\Models\Ship::class)->nullable(); //ship_id
         });
     }
 

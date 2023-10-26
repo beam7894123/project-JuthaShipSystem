@@ -40,41 +40,36 @@ class JourneyController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'start_date' => 'required|date',
-            'arrival_date' => 'required|date|after:start_date',
-            'destination' => 'required'
+            'start_date' => ['required'],
+            'arrive_date' => ['required', 'after:start_date'],
+            'destination' => ['required'],
         ]);
-        $ship = Ship::find($request->get('ship'));
 
         $journey = new Journey();
         $journey->start_date = $request->get('start_date');
-        $journey->arrival_date = $request->get('arrive_date');
+        $journey->arrive_date = $request->get('arrive_date');
         $journey->destination = $request->get('destination');
-        $journey->ship_id = $ship->id;
         $journey->status = "UPCOMING";
 
         $journey->save();
 
-        return redirect()->route('journeys.view' , [
-            'journey' => $journey
+        $journeys = Journey::get();
+        return redirect()->route('journeys.index' , [
+            'journeys' => $journeys
         ])->with('success', 'Your journey has been created.');
     }
 
     public function update(Request $request, Journey $journey)
     {
         $request->validate([
-            'start_date' => 'required|date',
-            'arrival_date' => 'required|date|after:start_date',
-            'destination' => 'required',
-            'status' => 'required'
+            'start_date' => ['required'],
+            'arrive_date' => ['required', 'after:start_date'],
+            'destination' => ['required'],
         ]);
-        $ship = Ship::find($request->get('ship'));
 
         $journey->start_date = $request->get('start_date');
-        $journey->arrival_date = $request->get('arrive_date');
+        $journey->arrive_date = $request->get('arrive_date');
         $journey->destination = $request->get('destination');
-        $journey->ship_id = $ship->id;
-        $journey->status = $request->get('status');
 
         $journey->save();
 

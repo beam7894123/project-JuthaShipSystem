@@ -1,7 +1,10 @@
 @extends('layouts.main')
 
 @section('content')
-    @include('alert')
+@include('alert')
+<form action="{{ route('journeys.update', ['journey' => $journey]) }}" method="post" class="mt-6 space-y-6" enctype="multipart/form-data">
+    @csrf
+    @method('PUT')
     <div class="flex justify-center items-center">
         <div class="w-1/2">
             <div id="ship_list" class="bg-white rounded-md max-w-full mx-auto mt-8 overflow-y-auto">
@@ -45,11 +48,10 @@
                 < Back
             </div>
         </a>
-            <a href="{{ route('journeys.view', ['journey' => $journey]) }}" class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
-                <div class="p-2 text-black text-center">
-                    Update >
-                </div>
-            </a>
+        <button type="submit" class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
+            Save >
+        </button>
     </div>
     </div>
+</form>
 @endsection
