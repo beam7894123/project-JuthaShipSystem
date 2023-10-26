@@ -86,7 +86,7 @@ class ShipController extends Controller
     public function updateStatus(Request $request, Ship $ship)
     {
         $request->validate([
-            'fuel' => ['required', 'integer', 'min:5', 'max:100'],
+            'fuel' => ['required', 'integer', 'min:0', 'max:100'],
         ]);
 
         $ship->engine_status = $request->get('engine_status');

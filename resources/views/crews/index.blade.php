@@ -47,15 +47,14 @@
                     @foreach ($users as $user)
                         <li class="flex items-center py-4 px-6 hover:bg-[#819eff] transition duration-300">
                             <div class="flex-1">
-                                <a href="{{ route('crews.edit', ['user' => $user]) }}">
+                                <a href="{{ route('crews.view', ['user' => $user]) }}">
                                     <h3 class="text-3xl font-medium text-gray-800">{{ $user->name }}</h3>
                                     <h3 class="text-xl font-sm text-gray-800">{{ $user->status }}</h3>
                                 </a>
                                 <p class="text-gray-600 text-base"></p>
                             </div>
                             <span class="text-gray-400"></span>
-
-
+                            @if(Auth::user()->role == 'CHIEF')
                                 <div class="grid grid-cols-2 gap-4 p-4">
                                     @if($user->status !== 'PENDING')
                                         <a href="{{ route('crews.pending', ['user' => $user]) }}"
@@ -81,8 +80,8 @@
                                         </div>
                                     </a>
                                     @endif
-
                                 </div>
+                            @endif
                         </li>
                     @endforeach
                 </ul>
@@ -98,9 +97,6 @@
                     < Back
                 </div>
             </a>
-            <button type="submit" class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
-                Save >
-            </button>
         </div>
     @endif
 

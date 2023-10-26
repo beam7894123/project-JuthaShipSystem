@@ -89,34 +89,34 @@
                             </div>
                             <span class="text-gray-400"></span>
 
-
-                            <div class="grid grid-cols-2 gap-4 p-4">
-                                @if($container->status !== 'PENDING')
-                                    <a href="{{ route('containers.pending', ['container' => $container]) }}"
-                                       class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg bg-[#c0cfff] hover:bg-white transition duration-300 m-4">
-                                        <div class="p-6 text-black text-center">
-                                            Pending
-                                        </div>
-                                    </a>
-                                @endif
-                                @if($container->status !== 'READY')
-                                    <a href="{{ route('containers.ready', ['container' => $container]) }}"
-                                       class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg bg-[#c0cfff] hover:bg-green-500 transition duration-300 m-4">
-                                        <div class="p-6 text-black text-center">
-                                            Ready
-                                        </div>
-                                    </a>
-                                @endif
-                                @if($container->status !== 'MISSING')
-                                    <a href="{{ route('containers.missing', ['container' => $container]) }}"
-                                       class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg bg-[#c0cfff] hover:bg-red-500 transition duration-300 m-4">
-                                        <div class="p-6 text-black text-center">
-                                            MISSING
-                                        </div>
-                                    </a>
-                                @endif
-
-                            </div>
+                            @if(Auth::user()->role == 'CAPTAIN')
+                                <div class="grid grid-cols-2 gap-4 p-4">
+                                    @if($container->status !== 'PENDING')
+                                        <a href="{{ route('containers.pending', ['container' => $container]) }}"
+                                           class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg bg-[#c0cfff] hover:bg-white transition duration-300 m-4">
+                                            <div class="p-6 text-black text-center">
+                                                Pending
+                                            </div>
+                                        </a>
+                                    @endif
+                                    @if($container->status !== 'READY')
+                                        <a href="{{ route('containers.ready', ['container' => $container]) }}"
+                                           class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg bg-[#c0cfff] hover:bg-green-500 transition duration-300 m-4">
+                                            <div class="p-6 text-black text-center">
+                                                Ready
+                                            </div>
+                                        </a>
+                                    @endif
+                                    @if($container->status !== 'MISSING')
+                                        <a href="{{ route('containers.missing', ['container' => $container]) }}"
+                                           class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg bg-[#c0cfff] hover:bg-red-500 transition duration-300 m-4">
+                                            <div class="p-6 text-black text-center">
+                                                MISSING
+                                            </div>
+                                        </a>
+                                    @endif
+                                </div>
+                            @endif
                         </li>
                     @endforeach
                 </ul>

@@ -8,19 +8,16 @@
         <div class="flex items-center" id="acc">
             @if( Auth::check() )
                 <div class="mr-4">
-                    {{ Auth::user()->name }}
+                    <a href="{{ route('crews.view', ['user' => Auth::user() ]) }}">
+                        {{ Auth::user()->name }}
+                    </a>
+
                 </div>
                 <div>
                     <form action="{{ route('logout') }}" method='POST'>
                         @csrf
                         <button type="submit">Logout</button>
                     </form>
-                </div>
-            @else
-                <div class="mr-4">
-                    <a href="{{ route('login') }}">
-                        Login
-                    </a>
                 </div>
             @endif
         </div>

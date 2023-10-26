@@ -27,30 +27,51 @@
                 </div>
 
                 <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                    <!-- Name Input -->
-                    <div class="mt-4">
-                        <x-input-label for="name" :value="__('Name')" />
-                        <x-text-input id="name" name="name" type="text" class="mt-1 block w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" :value="old('name', $user->name)"  required autofocus autocomplete="name" />
-                        <x-input-error class="mt-2" :messages="$errors->get('name')" />
-                    </div>
+                    @if(!Auth::user()->isAdmin())
+                        <div class="mt-4">
+                            <x-input-label for="name" :value="__('Name')" />
+                            <label class="text-base font-medium text-gray-700">{{ $user->name }}</label>
 
-                    <!-- Email Input -->
-                    <div class="mt-4">
-                        <x-input-label for="email" :value="__('Email')" />
-                        <x-text-input id="email" name="email" type="email" class="mt-1 block w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" :value="old('email', $user->email)" required autocomplete="username" />
-                        <x-input-error class="mt-2" :messages="$errors->get('email')" />
-                    </div>
+                        </div>
 
-                    <!-- Role Dropdown -->
-                    <div class="mt-4">
-                        <x-input-label for="role" :value="__('Role')" />
-                        <select id="role" name="role" class="w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-{{--                            <option value="ADMIN">ADMIN</option>--}}
-                            <option value="CAPTAIN">CAPTAIN</option>
-                            <option value="CHIEF">CHIEF</option>
-                            <option value="CREW">CREW</option>
-                        </select>
-                    </div>
+                        <!-- Email Input -->
+                        <div class="mt-4">
+                            <x-input-label for="email" :value="__('Email')" />
+                            <label class="text-base font-medium text-gray-700">{{ $user->email }}</label>
+                        </div>
+
+                        <!-- Role Dropdown -->
+                        <div class="mt-4">
+                            <x-input-label for="role" :value="__('Role')" />
+                            <label class="text-base font-medium text-gray-700">{{ $user->role }}</label>
+                        </div>
+                    @endif
+                    @if(Auth::user()->isAdmin())
+                        <!-- Name Input -->
+                        <div class="mt-4">
+                            <x-input-label for="name" :value="__('Name')" />
+                            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" :value="old('name', $user->name)"  required autofocus autocomplete="name" />
+                            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+                        </div>
+
+                        <!-- Email Input -->
+                        <div class="mt-4">
+                            <x-input-label for="email" :value="__('Email')" />
+                            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" :value="old('email', $user->email)" required autocomplete="username" />
+                            <x-input-error class="mt-2" :messages="$errors->get('email')" />
+                        </div>
+
+                        <!-- Role Dropdown -->
+                        <div class="mt-4">
+                            <x-input-label for="role" :value="__('Role')" />
+                            <select id="role" name="role" class="w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+    {{--                            <option value="ADMIN">ADMIN</option>--}}
+                                <option value="CAPTAIN">CAPTAIN</option>
+                                <option value="CHIEF">CHIEF</option>
+                                <option value="CREW">CREW</option>
+                            </select>
+                        </div>
+                    @endif
 
                     <!-- Password Input -->
                     <div class="mt-4">

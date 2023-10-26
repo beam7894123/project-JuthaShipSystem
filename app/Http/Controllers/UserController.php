@@ -70,7 +70,7 @@ class UserController extends Controller
         return redirect()->route('crews.index' , [
             'users' => $users,
             'usersForAdmin' => $usersForAdmin
-        ])->with('success, ' . $user->name . " has been created.");
+        ])->with('success', "The user : " . $user->name . " has been created.");
     }
 
     public function create()
@@ -81,17 +81,20 @@ class UserController extends Controller
     public function update(Request $request , User $user)
     {
         $request->validate([
-            'name' => ['required', 'string', 'min:1'],
+            'name' => ['required', 'min:1'],
             'email' => ['required', 'min:1'],
-            'password' => ['required', 'min:5','required_with:confirm_password','same:confirm_password'],
-            'confirm_password' => ['required', 'min:5'],
+            'password' => ['min:5','required_with:confirm_password','same:confirm_password'],
+            'confirm_password' => ['min:5'],
             'role' => ['required'],
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust validation rules as needed
         ]);
 
         $user->name = $request->get('name');
         $user->email = $request->get('email');
-        $user->password = Hash::make($request->get('password'));
+        if($request->get('password') != null)
+        {
+            $user->password = Hash::make($request->get('password'));
+        }
 
         if($request->file('image') != null )
         {
@@ -115,10 +118,9 @@ class UserController extends Controller
             ->where('role', 'CREW')
             ->get();
         $usersForAdmin = User::get();
-        return redirect()->route('crews.index' , [
-            'users' => $users,
-            'usersForAdmin' => $usersForAdmin
-        ])->with('success, ' . $user->name . " has been created.");
+        return redirect()->route('crews.view' , [
+            'user' => $user,
+        ])->with('success', "The user : " . $user->name . " has been updated.");
     }
 
     public function pending(User $user)
