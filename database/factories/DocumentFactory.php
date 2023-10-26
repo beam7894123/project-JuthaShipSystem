@@ -19,12 +19,12 @@ class DocumentFactory extends Factory
     {
 //        $status = array('PENDING','APPROVED');
         $imagePath = array(
-            '/images/document/defaultDocument.png',
-            '/images/document/fired-from-dominos.jpg',
-            '/images/document/JUTHA.jpg',
-            '/images/document/Surveys_for_Freeboard_(Computation_for_Steamer,_Sailing_Ship,_Tanker)_Report_for_James_Lamont,_Undated_Page_1_Image_0001.jpg',
-            '/images/document/Surveys_for_Freeboard_(Computation_for_Steamer,_Sailing_Ship,_Tanker)_Report_for_James_Lamont,_Undated_Page_2_Image_0001.jpg',
-            '/images/document/k1nfgkiz5qza1.png'
+            'document/defaultDocument.png',
+            'document/fired-from-dominos.jpg',
+            'document/JUTHA.jpg',
+            'document/Surveys_for_Freeboard_(Computation_for_Steamer,_Sailing_Ship,_Tanker)_Report_for_James_Lamont,_Undated_Page_1_Image_0001.jpg',
+            'document/Surveys_for_Freeboard_(Computation_for_Steamer,_Sailing_Ship,_Tanker)_Report_for_James_Lamont,_Undated_Page_2_Image_0001.jpg',
+            'document/k1nfgkiz5qza1.png'
         );
 
         return [

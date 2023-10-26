@@ -44,7 +44,7 @@
                     < Back
                 </div>
             </a>
-            @if(Auth::user()->isAdmin() or Auth::user())
+            @if(Auth::user()->isAdmin() or Auth::user() == $user)
             <a href="{{ route('crews.edit', ['user' => $user]) }}" class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
                 <div class="p-2 text-black text-center">
                     Edit >

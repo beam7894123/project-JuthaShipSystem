@@ -12,27 +12,27 @@ class DocumentController extends Controller
 {
     public function index()
     {
-    $user = Auth::user();
-    $documents = Document::where('journey_id', $user->journey_id)->get();
+        $user = Auth::user();
+        $journey = Journey::where('id', $user->journey_id)->first();
+        $documents = Document::where('journey_id', $user->journey_id)->get();
 
-//    dd($documents);
-    return view('documents.index', [
-        'documents' => $documents
-    ]);
+        return view('documents.index', [
+            'documents' => $documents,
+            'journey' => $journey
+        ]);
     }
 
     public function store(Request $request, Journey $journey)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust validation rules as needed
+            'image' => 'required|nullable|image|mimes:jpg,jpeg,png,gif|max:2048'
         ]);
 
-        $imagePath = $request->file('image')->store('{$journey->id}/documents', 'public'); // Store image in 'public/{$journey->id}/documents' folder
+        $imagePath = $request->file('image')->store('/document', 'public'); // Store image in 'public/images/documents' folder
 
         $document =  new Document();
         $document->imagePath = $imagePath;
         $document->journey_id = $journey->id;
-        $document->status = 'PENDING';
 
         $document->save();
 
@@ -64,12 +64,15 @@ class DocumentController extends Controller
 
     public function destroy(Journey $journey, Document $document)
     {
+        $document->deleteImage();
         $document->delete();
 
         return redirect()->route('documents.index', [
             'journey' => $journey
         ])->with('success', 'Your document has been deleted.');
     }
+
+
 
 //    public function pending (Document $document)
 //    {

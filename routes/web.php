@@ -61,7 +61,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/documents/store/{journey}', [DocumentController::class, 'store'])->name('documents.store');
     Route::get('/documents/edit/{document}', [DocumentController::class, 'edit'])->name('documents.edit');
     Route::put('/documents/update/{document}', [DocumentController::class, 'update'])->name('documents.update');
-//    Route::get('/documents/destroy/{document}', [DocumentController::class, 'destroy'])->name('documents.destroy');
+    Route::delete('/documents/destroy/{document}', [DocumentController::class, 'destroy'])->name('documents.destroy');
 //    Route::get('/documents/pending/{document}', [DocumentController::class, 'pending'])->name('documents.pending');
 //    Route::get('/documents/approved/{document}', [DocumentController::class, 'approved'])->name('documents.approved');
 
