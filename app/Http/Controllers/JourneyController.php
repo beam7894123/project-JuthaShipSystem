@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Journey;
 use App\Models\Ship;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Psy\Util\Str;
 
 class JourneyController extends Controller
 {
@@ -81,15 +83,23 @@ class JourneyController extends Controller
         ])->with('success', 'Your journey has been updated.');
     }
 
-    public function finish(Journey $journey)
+    public function finish(String $journey_id)
     {
+        $journey = Journey::find($journey_id);
         $journey->status = "COMPLETED";
         $journey->save();
 
+        $users = User::where('journey_id' , $journey->id)->get();
+        foreach ($users as $user) {
+            $user->journey_id = null;
+            $user->save();
+        }
 
-        return redirect()->route('journeys.view' , [
-            'journey' => $journey
-        ])->with('success', 'Your journey has been completed.');
+        $ship = Ship::find($journey->ship_id);
+        $ship->journey_id = null;
+        $ship->save();
+
+        return redirect()->route('dashboard')->with('success', 'Your journey has been completed.');
     }
 
 }

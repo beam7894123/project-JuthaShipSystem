@@ -2,6 +2,8 @@
 
 @section('content')
 
+@include('alert')
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 {{--             // Fetch the users and journeys and then join it togater --}}
@@ -63,13 +65,29 @@
                                     Documents
                                 </div>
                             </a>
+
+
                             @else
                             <h1 class="text-4xl mb-6 py-3 pl-12 text-white"><strong>Welcome to your Dashboard, {{Auth::user()->role}}!</strong></h1>
                             <h2 class="text-2xl mb-1 py-3 pl-12 text-white"><strong>You currently have no journey!</strong></h2>
                             @endif
     @endif
-
     </div>
+
 </div>
+            <div class="p-4 flex justify-between">
+                <a class="block p-2 text-xl bg-hex-color-010066 overflow-hidden shadow-sm sm:rounded-lg  transition duration-300 m-4">
+                    <div class="p-2 text-black text-center">
+                    </div>
+                </a>
+                @if(Auth::user()->role == 'CAPTAIN' and !Auth::user()->journey_id == null)
+                <a href="{{ route('journeys.finish', ['journey_id' => $UserData->journey_id ]) }}" class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
+                    <div class="p-2 text-black text-center">
+                        Finish Trip >
+                    </div>
+                </a>
+                @endif
+            </div>
 </div>
+
 @endsection

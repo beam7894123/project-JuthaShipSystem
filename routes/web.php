@@ -72,6 +72,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/journeys/edit/{journey}', [JourneyController::class, 'edit'])->name('journeys.edit');
     Route::post('/journeys/store', [JourneyController::class, 'store'])->name('journeys.store');
     Route::put('/journeys/update/{journey}', [JourneyController::class, 'update'])->name('journeys.update');
+    Route::get('/journeys/finish/{journey_id}', [JourneyController::class, 'finish'])->name('journeys.finish');
 
     //Ship system
     Route::get('/ships', [ShipController::class, 'index'])->name('ships.index');
