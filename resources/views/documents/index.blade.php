@@ -9,7 +9,7 @@
         <div class="border-b border-gray-400 mt-4"></div>
         <div class="mx-6 my-4 flex flex-col">
             <!-- INSERT HERE!!! -->
-            @if(Auth::user()->role === 'CAPTAIN')
+            @if(Auth::user()->role == 'CAPTAIN')
             <form method="POST" action="{{route('documents.store' , ['journey' => $journey ])}}" enctype="multipart/form-data">
                 @csrf
                 @method('POST')
@@ -38,7 +38,7 @@
                         <div class="relative h-48 w-auto rounded-lg shadow-xl m-5">
                             <img src="{{ asset('storage/'. $document->imagePath) }}" alt="Image" class="w-full h-full object-cover rounded-lg">
                             <div class="absolute top-2 right-2">
-                                @if(Auth::user->role === 'CAPTAIN')
+                                @if(Auth::user()->role == 'CAPTAIN')
                                 <form method="POST" action="{{ route('documents.destroy', ['document' => $document]) }}">
                                     @csrf
                                     @method('delete')

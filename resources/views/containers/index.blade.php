@@ -80,11 +80,19 @@
                     @foreach ($containers as $container)
                         <li class="flex items-center py-4 px-6 hover:bg-[#819eff] transition duration-300">
                             <div class="flex-1">
-                                <a href="{{ route('containers.edit', ['container' => $container->id]) }}">
+                                @if(Auth::user()->role == 'ADMIN')
+                                    <a href="{{ route('containers.edit', ['container' => $container->id]) }}">
+                                        <h3 class="text-3xl font-medium text-gray-800">{{ $container->company_name ?? 'Not assigned' }}</h3>
+                                        <h3 class="text-xl font-sm text-gray-800">Status: {{ $container->status}}</h3>
+                                        <h3 class="text-xl font-sm text-gray-800">Container ID: {{ $container->id}}</h3>
+                                    </a>
+                                @else
+                                <p href="{{ route('containers.edit', ['container' => $container->id]) }}">
                                     <h3 class="text-3xl font-medium text-gray-800">{{ $container->company_name ?? 'Not assigned' }}</h3>
                                     <h3 class="text-xl font-sm text-gray-800">Status: {{ $container->status}}</h3>
                                     <h3 class="text-xl font-sm text-gray-800">Container ID: {{ $container->id}}</h3>
-                                </a>
+                                </p>
+                                @endif
                                 <p class="text-gray-600 text-base"></p>
                             </div>
                             <span class="text-gray-400"></span>
