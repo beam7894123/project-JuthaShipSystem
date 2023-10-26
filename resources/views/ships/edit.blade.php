@@ -35,12 +35,12 @@
     </div>
 
     <div class="p-4 flex justify-between">
-        <a href="{{ route('dashboard') }}" class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover.bg-[#c0cfff] transition duration-300 m-4">
+        <a href="{{ route('dashboard') }}" class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
             <div class="p-2 text-black text-center">
                 < Back
             </div>
         </a>
-        <button type="submit" class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover.bg-[#c0cfff] transition duration-300 m-4">
+        <button type="submit" class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
             Confirm >
         </button>
     </div>
