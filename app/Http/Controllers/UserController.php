@@ -175,10 +175,15 @@ class UserController extends Controller
 
     public function assignment(Journey $journey)
     {
-        $users = User::get();
+        $users = User::where('journey_id', null)
+            ->get();
+        $currentusers = User::where('journey_id', $journey->id)
+            ->get();
         return view('crews.assignment', [
             'journey' => $journey,
-            'users' => $users
+            'users' => $users,
+            'currentusers' => $currentusers
+
         ]);
     }
 
@@ -187,10 +192,14 @@ class UserController extends Controller
         $user->journey_id = $journey->id;
         $user->save();
 
-        $users = User::get();
+        $users = User::where('journey_id', null)
+            ->get();
+        $currentusers = User::where('journey_id', $journey->id)
+            ->get();
         return redirect()->route('crews.assignment', [
             'journey' => $journey,
             'users' => $users
+            'currentusers' => $currentusers
         ])->with('success', 'User has been assigned.');
     }
 
@@ -199,9 +208,14 @@ class UserController extends Controller
         $user->journey_id = null;
         $user->save();
 
-        $users = User::get();
-        return redirect()->route('crews.index' , [
-            'users' => $users
+        $users = User::where('journey_id', null)
+            ->get();
+        $currentusers = User::where('journey_id', $journey->id)
+            ->get();
+        return redirect()->route('crews.assignment', [
+            'journey' => $journey,
+            'users' => $users,
+            'currentusers' => $currentusers
         ])->with('success', 'User has been unassigned.');
     }
 }

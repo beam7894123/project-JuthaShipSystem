@@ -81,4 +81,15 @@ class JourneyController extends Controller
         ])->with('success', 'Your journey has been updated.');
     }
 
+    public function finish(Journey $journey)
+    {
+        $journey->status = "COMPLETED";
+        $journey->save();
+
+
+        return redirect()->route('journeys.view' , [
+            'journey' => $journey
+        ])->with('success', 'Your journey has been completed.');
+    }
+
 }

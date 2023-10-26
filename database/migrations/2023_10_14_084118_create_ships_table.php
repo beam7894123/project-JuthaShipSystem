@@ -19,6 +19,7 @@ return new class extends Migration
             $table->enum('engine_status',['DOWN','READY', 'PENDING']);
             $table->integer('container_capacity');
             $table->integer('crew_capacity');
+            $table->foreignIdFor(\App\Models\Journey::class)->nullable(); //journey_id
         });
     }
 

@@ -39,11 +39,18 @@
         </div>
 
         <div class="p-4 flex justify-between">
+            @if(!Auth::user() == $user)
             <a href="{{ route('crews.index') }}" class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
                 <div class="p-2 text-black text-center">
                     < Back
                 </div>
             </a>
+            @else
+            <a class="block p-2 text-xl bg-hex-color-010066 overflow-hidden shadow-sm sm:rounded-lg  transition duration-300 m-4">
+                <div class="p-2 text-black text-center">
+                </div>
+            </a>
+            @endif
             @if(Auth::user()->isAdmin() or Auth::user() == $user)
             <a href="{{ route('crews.edit', ['user' => $user]) }}" class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
                 <div class="p-2 text-black text-center">

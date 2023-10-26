@@ -37,31 +37,36 @@
                         </div>
                     </a>
             @else
-                <h1 class="text-4xl mb-6 py-3 pl-12 text-white"><strong>Welcome to your Dashboard, {{ $UserData->role }}!</strong></h1>
-                <h2 class="text-2xl mb-1 py-3 pl-12 text-white"><strong>Destination: {{ $UserData->destination }}</strong></h2>
-                <h2 class="text-2xl mb-6 py-3 pl-12 text-white"><strong>Journey ID: {{ $UserData->journey_id }}</strong></h2>
+                    @if(!Auth::user()->journey_id == null)
+                        <h1 class="text-4xl mb-6 py-3 pl-12 text-white"><strong>Welcome to your Dashboard, {{ $UserData->role }}!</strong></h1>
+                        <h2 class="text-2xl mb-1 py-3 pl-12 text-white"><strong>Destination: {{ $UserData->destination }}</strong></h2>
+                        <h2 class="text-2xl mb-6 py-3 pl-12 text-white"><strong>Journey ID: {{ $UserData->journey_id }}</strong></h2>
 
-                <div class="grid grid-cols-2 gap-4">
-                    <a href="{{ route('ships.view' , [ 'ship_id' => $UserData->ship_id ]) }}" class="block p-10 text-5xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
-                        <div class="p-6 text-black text-center">
-                            Ship
-                        </div>
-                    </a>
-                    <a href="{{ route('containers.index') }}" class="block p-10 text-5xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
-                        <div class="p-6 text-black text-center">
-                            Containers
-                        </div>
-                    </a>
-                    <a href="{{ route('crews.index') }}" class="block p-10 text-5xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
-                        <div class="p-6 text-black text-center">
-                            Crew
-                        </div>
-                    </a>
-                    <a href="{{ route('documents.index') }}" class="block p-10 text-5xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
-                        <div class="p-6 text-black text-center">
-                            Documents
-                        </div>
-                    </a>
+                        <div class="grid grid-cols-2 gap-4">
+                            <a href="{{ route('ships.view' , [ 'ship_id' => $UserData->ship_id ]) }}" class="block p-10 text-5xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
+                                <div class="p-6 text-black text-center">
+                                    Ship
+                                </div>
+                            </a>
+                            <a href="{{ route('containers.index') }}" class="block p-10 text-5xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
+                                <div class="p-6 text-black text-center">
+                                    Containers
+                                </div>
+                            </a>
+                            <a href="{{ route('crews.index') }}" class="block p-10 text-5xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
+                                <div class="p-6 text-black text-center">
+                                    Crew
+                                </div>
+                            </a>
+                            <a href="{{ route('documents.index') }}" class="block p-10 text-5xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
+                                <div class="p-6 text-black text-center">
+                                    Documents
+                                </div>
+                            </a>
+                            @else
+                            <h1 class="text-4xl mb-6 py-3 pl-12 text-white"><strong>Welcome to your Dashboard, {{Auth::user()->role}}!</strong></h1>
+                            <h2 class="text-2xl mb-1 py-3 pl-12 text-white"><strong>You currently have no journey!</strong></h2>
+                            @endif
     @endif
 
     </div>

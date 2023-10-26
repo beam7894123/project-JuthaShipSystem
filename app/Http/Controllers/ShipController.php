@@ -109,10 +109,12 @@ class ShipController extends Controller
 
     public function assignment(Journey $journey)
     {
-        $ships = Ship::get();
+        $ships = Ship::where('journey_id', null)->get();
+        $currentship = Ship::where('id', $journey->ship_id)->first();
         return view('ships.assignment', [
             'ships' => $ships,
-            'journey' => $journey
+            'journey' => $journey,
+            'currentship' => $currentship
         ]);
     }
 
@@ -120,23 +122,29 @@ class ShipController extends Controller
     {
         $journey->ship_id = $ship->id;
         $journey->save();
+        $ship->journey_id = $journey->id;
 
-        $ships = Ship::get();
+        $ships = Ship::where('journey_id', null)->get();
+        $currentship = Ship::where('id', $journey->ship_id)->first();
         return redirect()->route('ships.assignment', [
             'ships' => $ships,
-            'journey' => $journey
+            'journey' => $journey,
+            'currentship' => $currentship
         ])->with('success', 'A ship has been assigned.');
     }
 
-    public function unassign(Journey $journey)
+    public function unassign(Journey $journey, Ship $ship)
     {
         $journey->ship_id = null;
         $journey->save();
+        $ship->journey_id = null;
 
-        $ships = Ship::get();
+        $ships = Ship::where('journey_id', null)->get();
+        $currentship = Ship::where('id', $journey->ship_id)->first();
         return redirect()->route('ships.assignment', [
             'ships' => $ships,
-            'journey' => $journey
+            'journey' => $journey,
+            'currentship' => $currentship
         ])->with('success', 'A ship has been unassigned.');
     }
 }

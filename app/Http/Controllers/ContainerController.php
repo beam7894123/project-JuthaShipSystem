@@ -132,8 +132,12 @@ class ContainerController extends Controller
 
     public function assignment(Journey $journey)
     {
+        $containers = Container::where('journey_id', null)->get();
+        $currentcontainer = Container::where('id', $journey->container_id)->first();
         return view('containers.assignment', [
             'journey' => $journey,
+            'containers' => $containers,
+            'currentcontainer' => $currentcontainer
         ]);
     }
 
@@ -142,9 +146,12 @@ class ContainerController extends Controller
         $container->journey_id = $journey->id;
         $container->save();
 
-        $containers = Container::get();
+        $containers = Container::where('journey_id', null)->get();
+        $currentcontainer = Container::where('id', $journey->container_id)->first();
         return redirect()->route('containers.index' , [
-            'containers' => $containers
+            'journey' => $journey,
+            'containers' => $containers,
+            'currentcontainer' => $currentcontainer
         ])->with('success', 'Your container has been assigned.');
     }
 
@@ -153,9 +160,12 @@ class ContainerController extends Controller
         $container->journey_id = null;
         $container->save();
 
-        $containers = Container::get();
+        $containers = Container::where('journey_id', null)->get();
+        $currentcontainer = Container::where('id', $journey->container_id)->first();
         return redirect()->route('containers.index' , [
-            'containers' => $containers
+            'journey' => $journey,
+            'containers' => $containers,
+            'currentcontainer' => $currentcontainer
         ])->with('success', 'Your container has been unassigned.');
     }
 }
