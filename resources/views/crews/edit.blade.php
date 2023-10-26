@@ -4,10 +4,13 @@
     @include('alert')
 
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-        <form method="post" action="{{ route('crews.edit') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
+        <form action="{{ route('crews.update', ['user' => $user]) }}" method="post" class="mt-6 space-y-6" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+
             <h1 class="text-4xl mb-6 py-3 text-white">
                 <strong>
-                User Information
+                Edit User Information
                 </strong>
             </h1>
             <div class="grid grid-cols-2 gap-6">
@@ -40,7 +43,7 @@
                     <!-- Role Dropdown -->
                     <div class="mt-4">
                         <x-input-label for="role" :value="__('Role')" />
-                        <select id="dropdown" name="dropdown" class="w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <select id="role" name="role" class="w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
                             <option value="ADMIN">ADMIN</option>
                             <option value="CAPTAIN">CAPTAIN</option>
                             <option value="CHIEF">CHIEF</option>
@@ -54,30 +57,28 @@
                         <x-text-input id="password" name="password" type="password" class="mt-1 block w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" autocomplete="new-password" />
                         <x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2" />
                     </div>
+
+                    <div class="mt-4">
+                        <x-input-label for="Confirm password" :value="__('Confirm password')" />
+                        <x-text-input id="confirm_password" name="confirm_password" type="password" class="mt-1 block w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" autocomplete="new-password" />
+                        <x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2" />
+                    </div>
+
                 </div>
             </div>
 
     <div class="p-4 flex justify-between">
-                <a href="{{ route('dashboard') }}" class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
+                <a href="{{ route('crews.index', ['user' => $user]) }}" class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
                     <div class="p-2 text-black text-center">
                         < Back
                     </div>
                 </a>
 
-{{--                <form method="POST" action="{{route('crews.index', ['user' => $user])}}">--}}
-{{--                    @csrf--}}
-{{--                    @method('delete')--}}
-{{--                    <x-danger-button--}}
-{{--                        x-data=""--}}
-{{--                        x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"--}}
-{{--                    >{{ __('Delete Account') }}</x-danger-button>--}}
-{{--                </form>--}}
 
                 <button type="submit" class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
                     Save >
                 </button>
-            </div>
-            </form>
-{{--                    @include('crews.partials.delete-user-form')--}}
-        </div>
+    </div>
+
+    </form>
 @endsection

@@ -39,6 +39,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/crews/pending/{user}', [UserController::class, 'pending'])->name('crews.pending');
     Route::get('/crews/ready/{user}', [UserController::class, 'ready'])->name('crews.ready');
     Route::get('/crews/notready/{user}', [UserController::class, 'notready'])->name('crews.notready');
+    Route::get('/crews/create', [UserController::class, 'create'])->name('crews.create');
+    Route::post('/crews/store', [UserController::class, 'store'])->name('crews.store');
+    Route::put('/crews/update/{user}', [UserController::class, 'update'])->name('crews.update');
 
     //Containers system
     Route::get('/containers', [ContainerController::class, 'index'])->name('containers.index');
