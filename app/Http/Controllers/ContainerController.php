@@ -4,15 +4,27 @@ namespace App\Http\Controllers;
 
 use App\Models\Container;
 use App\Models\Journey;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ContainerController extends Controller
 {
     public function index()
     {
-        $containers = Container::get();
+        $containers = Container::where('journey_id', Auth::user()->journey_id)
+            ->get();
+        $containersForAdmin = Container::get();
         return view('containers.index' , [
-            'containers' => $containers
+            'containers' => $containers,
+            'containersForAdmin' => $containersForAdmin
+        ]);
+    }
+
+    public function edit(Container $container)
+    {
+        return view('containers.edit', [
+            'container' => $container
         ]);
     }
 
@@ -65,5 +77,53 @@ class ContainerController extends Controller
         return redirect()->route('containers.index' , [
             'containers' => $containers
         ])->with('success', 'Your container has been deleted.');
+    }
+
+    public function pending(Container $container)
+    {
+//        $container->status = 'PENDING';
+//        $container->save();
+//
+//        $container = Container::where('journey_id', Auth::user()->journey_id)
+//            ->where('status', 'CREW')
+//            ->get();
+//        $usersForAdmin = User::get();
+//        return redirect()->route('crews.index' , [
+//            'users' => $users,
+//            'usersForAdmin' => $usersForAdmin
+//        ])->with('success', "The status of " . $user->name . " has been updated.");
+    }
+
+
+
+    public function ready(User $user)
+    {
+//        $user->status = 'READY';
+//        $user->save();
+//
+//        $users = User::where('journey_id', Auth::user()->journey_id)
+//            ->where('role', 'CREW')
+//            ->get();
+//        $usersForAdmin = User::get();
+//        return redirect()->route('crews.index' , [
+//            'users' => $users,
+//            'usersForAdmin' => $usersForAdmin
+//        ])->with('success', "The status of " . $user->name . " has been updated.");
+    }
+
+    public function missing(User $user)
+    {
+//        $user->status = 'NOTREADY';
+//        $user->save();
+//        dd($user);
+//
+//        $users = User::where('journey_id', Auth::user()->journey_id)
+//            ->where('role', 'CREW')
+//            ->get();
+//        $usersForAdmin = User::get();
+//        return redirect()->route('crews.index' , [
+//            'users' => $users,
+//            'usersForAdmin' => $usersForAdmin
+//        ])->with('success', "The status of " . $user->name . " has been updated.");
     }
 }

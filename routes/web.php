@@ -45,9 +45,13 @@ Route::middleware('auth')->group(function () {
 
     //Containers system
     Route::get('/containers', [ContainerController::class, 'index'])->name('containers.index');
-    Route::post('/containers/create', [ContainerController::class, 'create'])->name('containers.create');
-    Route::put('/containers/update/{journey}/{container}', [ContainerController::class, 'update'])->name('containers.update');
+    Route::get('/containers/edit/{container}', [ContainerController::class, 'edit'])->name('containers.edit');
+    Route::get('/containers/create', [ContainerController::class, 'create'])->name('containers.create');
+    Route::put('/containers/update/{container}', [ContainerController::class, 'update'])->name('containers.update');
     Route::get('/containers/destroy/{container}', [ContainerController::class, 'destroy'])->name('containers.destroy');
+    Route::get('/containers/pending/{container}', [ContainerController::class, 'pending'])->name('containers.pending');
+    Route::get('/containers/ready/{container}', [ContainerController::class, 'ready'])->name('containers.ready');
+    Route::get('/containers/missing/{container}', [ContainerController::class, 'missing'])->name('containers.missing');
 
     //Document system
     Route::get('/documents', [DocumentController::class, 'index'])->name('documents.index');
