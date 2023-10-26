@@ -1,9 +1,9 @@
 @extends('layouts.main')
 @include('alert')
 @section('content')
-    <form action="{{ route('containers.index') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('containers.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        @method('PUT')
+
         <div class="flex justify-center items-center">
             <div class="w-1/2">
                 <div id="ship_list" class="bg-white rounded-md max-w-full mx-auto mt-8 overflow-y-auto">
@@ -14,7 +14,7 @@
                         <!-- Input zone for company_name -->
                         <div class="grid grid-cols-2 items-center p-6 text-3xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4 text-black">
                             <div class="text-center font-semibold mb-4">Company name</div>
-                            <x-text-input type="text" class="block p-4 bg-white border rounded-md focus:outline-none focus:ring-2 focus:ring-[#c0cfff] " placeholder="your company name" />
+                            <x-text-input type="text" id="company_name" name="company_name" class="block p-4 bg-white border rounded-md focus:outline-none focus:ring-2 focus:ring-[#c0cfff] " placeholder="your company name" />
                             <x-input-error class="mt-2" :messages="$errors->get('company_name')" />
                         </div>
                         {{--                    <div class="mt-4">--}}

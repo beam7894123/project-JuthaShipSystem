@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('containers', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignIdFor(\App\Models\Journey::class); // journey_id (fk)
+            $table->foreignIdFor(\App\Models\Journey::class)->nullable(); // journey_id (fk)
             $table->string('company_name');
             $table->enum('status',['PENDING', 'READY', 'MISSING']);
         });

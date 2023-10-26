@@ -47,6 +47,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/containers', [ContainerController::class, 'index'])->name('containers.index');
     Route::get('/containers/edit/{container}', [ContainerController::class, 'edit'])->name('containers.edit');
     Route::get('/containers/create', [ContainerController::class, 'create'])->name('containers.create');
+    Route::post('/containers/store', [ContainerController::class, 'store'])->name('containers.store');
     Route::put('/containers/update/{container}', [ContainerController::class, 'update'])->name('containers.update');
     Route::get('/containers/destroy/{container}', [ContainerController::class, 'destroy'])->name('containers.destroy');
     Route::get('/containers/pending/{container}', [ContainerController::class, 'pending'])->name('containers.pending');

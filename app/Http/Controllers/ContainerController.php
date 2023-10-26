@@ -41,7 +41,6 @@ class ContainerController extends Controller
         $journey = Journey::find($request->get('journey'));
 
         $container = new Container();
-        $container->journey_id = $journey->id;
         $container->company_name = $request->get('company_name');
         $container->status = 'PENDING';
 
