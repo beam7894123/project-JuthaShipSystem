@@ -38,7 +38,6 @@ class ContainerController extends Controller
         $request->validate([
             'company_name' => ['required', 'string', 'min:1']
         ]);
-        $journey = Journey::find($request->get('journey'));
 
         $container = new Container();
         $container->company_name = $request->get('company_name');
@@ -52,7 +51,23 @@ class ContainerController extends Controller
         ])->with('success', 'Your container has been added.');
     }
 
-    public function update(Request $request, Container $container, Journey $journey)
+    public function rename(Request $request, Container $container)
+    {
+        $request->validate([
+            'company_name' => ['required', 'string', 'min:1']
+        ]);
+
+        $container->company_name = $request->get('company_name');
+        $container->status = 'PENDING';
+
+        $container->save();
+
+        $containers = Container::get();
+        return redirect()->route('containers.index' , [
+            'containers' => $containers
+        ])->with('success', 'Your container has been changed.');
+    }
+    public function update(Request $request, Container $container)
     {
         $request->validate([
             'status' => ['required', 'string', 'min:1']

@@ -21,8 +21,6 @@
                             <p class="text-gray-600 text-base"></p>
                         </div>
                         <span class="text-gray-400"></span>
-
-
                         {{--                            <div class="grid grid-cols-2 gap-4 p-4">--}}
                         {{--                                @if($user->status !== 'PENDING')--}}
                         {{--                                    <a href="{{ route('crews.pending', ['user' => $user]) }}"--}}
