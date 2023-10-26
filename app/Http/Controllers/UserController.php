@@ -198,12 +198,12 @@ class UserController extends Controller
             ->get();
         return redirect()->route('crews.assignment', [
             'journey' => $journey,
-            'users' => $users
+            'users' => $users,
             'currentusers' => $currentusers
         ])->with('success', 'User has been assigned.');
     }
 
-    public function unassign(User $user)
+    public function unassign(User $user, Journey $journey)
     {
         $user->journey_id = null;
         $user->save();
