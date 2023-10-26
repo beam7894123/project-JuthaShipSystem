@@ -20,8 +20,9 @@ class ShipController extends Controller
         return view('ships.create');
     }
 
-    public function view(Ship $ship)
+    public function view(String $ship_id)
     {
+        $ship = Ship::where('id', $ship_id)->first();
         return view('ships.view', [
             'ship' => $ship
         ]);
@@ -78,23 +79,23 @@ class ShipController extends Controller
         $ship->save();
 
         return redirect()->route('ships.view', [
-            'ship' => $ship
+            'ship_id' => $ship->id
         ])->with('success', 'Your ship has been updated.');
     }
 
     public function updateStatus(Request $request, Ship $ship)
     {
         $request->validate([
-            'engine_status' => ['required', 'string', 'min:1'],
-            'fuel' => ['required', 'min:0'],
+            'fuel' => ['required', 'integer', 'min:5', 'max:100'],
         ]);
 
         $ship->engine_status = $request->get('engine_status');
+        $ship->fuel = $request->get('fuel');
 
         $ship->save();
 
         return redirect()->route('ships.view', [
-            'ship' => $ship
+            'ship_id' => $ship->id
         ])->with('success', 'Your ship has been updated.');
     }
 
