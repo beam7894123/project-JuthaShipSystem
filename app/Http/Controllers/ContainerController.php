@@ -95,49 +95,36 @@ class ContainerController extends Controller
 
     public function pending(Container $container)
     {
-//        $container->status = 'PENDING';
-//        $container->save();
-//
-//        $container = Container::where('journey_id', Auth::user()->journey_id)
-//            ->where('status', 'CREW')
-//            ->get();
-//        $usersForAdmin = User::get();
-//        return redirect()->route('crews.index' , [
-//            'users' => $users,
-//            'usersForAdmin' => $usersForAdmin
-//        ])->with('success', "The status of " . $user->name . " has been updated.");
+        $container->status = 'PENDING';
+        $container->save();
+
+        $containers = Container::get();
+        return redirect()->route('containers.index' , [
+            'containers' => $containers
+        ])->with('success', 'Your container has been updated.');
     }
 
 
 
-    public function ready(User $user)
+    public function ready(Container $container)
     {
-//        $user->status = 'READY';
-//        $user->save();
-//
-//        $users = User::where('journey_id', Auth::user()->journey_id)
-//            ->where('role', 'CREW')
-//            ->get();
-//        $usersForAdmin = User::get();
-//        return redirect()->route('crews.index' , [
-//            'users' => $users,
-//            'usersForAdmin' => $usersForAdmin
-//        ])->with('success', "The status of " . $user->name . " has been updated.");
+        $container->status = 'READY';
+        $container->save();
+
+        $containers = Container::get();
+        return redirect()->route('containers.index' , [
+            'containers' => $containers
+        ])->with('success', 'Your container has been updated.');
     }
 
-    public function missing(User $user)
+    public function missing(Container $container)
     {
-//        $user->status = 'NOTREADY';
-//        $user->save();
-//        dd($user);
-//
-//        $users = User::where('journey_id', Auth::user()->journey_id)
-//            ->where('role', 'CREW')
-//            ->get();
-//        $usersForAdmin = User::get();
-//        return redirect()->route('crews.index' , [
-//            'users' => $users,
-//            'usersForAdmin' => $usersForAdmin
-//        ])->with('success', "The status of " . $user->name . " has been updated.");
+        $container->status = 'MISSING';
+        $container->save();
+
+        $containers = Container::get();
+        return redirect()->route('containers.index' , [
+            'containers' => $containers
+        ])->with('success', 'Your container has been updated.');
     }
 }
