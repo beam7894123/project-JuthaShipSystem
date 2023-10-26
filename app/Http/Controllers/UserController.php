@@ -20,6 +20,13 @@ class UserController extends Controller
         ]);
     }
 
+    public function edit(Request $request)
+    {
+        return view('crews.edit', [
+            'user' => $request->user(),
+        ]);
+    }
+
     public function pending(User $user)
     {
         $user->status = 'PENDING';

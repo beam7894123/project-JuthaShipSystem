@@ -13,7 +13,7 @@
                     @foreach ($usersForAdmin as $user)
                         <li class="flex items-center py-4 px-6 hover:bg-[#c0cfff] transition duration-300">
                             <div class="flex-1">
-                                <a href="{{ route('crews.index', ['user' => $user]) }}">
+                                <a href="{{ route('crews.edit', ['user' => $user]) }}">
                                     <h3 class="text-lg font-medium text-gray-800">{{ $user->name }}, {{ $user->role }}</h3>
                                 </a>
                                 <p class="text-gray-600 text-base"></p>
@@ -47,7 +47,7 @@
                     @foreach ($users as $user)
                         <li class="flex items-center py-4 px-6 hover:bg-[#819eff] transition duration-300">
                             <div class="flex-1">
-                                <a href="{{ route('crews.index', ['user' => $user]) }}">
+                                <a href="{{ route('crews.edit', ['user' => $user]) }}">
                                     <h3 class="text-3xl font-medium text-gray-800">{{ $user->name }}</h3>
                                     <h3 class="text-xl font-sm text-gray-800">{{ $user->status }}</h3>
                                 </a>
