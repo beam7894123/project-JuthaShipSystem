@@ -203,7 +203,7 @@ class UserController extends Controller
         ])->with('success', 'User has been assigned.');
     }
 
-    public function unassign(User $user, Journey $journey)
+    public function unassign(Journey $journey, User $user)
     {
         $user->journey_id = null;
         $user->save();

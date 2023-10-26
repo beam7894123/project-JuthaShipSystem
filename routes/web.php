@@ -79,7 +79,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/unassign/ship/{journey}/{ship}', [ShipController::class, 'unassign'])->name('ships.unassign');
 
     Route::get('/assignment/crew/{journey}', [UserController::class, 'assignment'])->name('crews.assignment');
+    Route::get('/assign/crew/{journey}/{user}', [UserController::class, 'assign'])->name('crews.assign');
+    Route::get('/unassign/crew/{journey}/{user}', [UserController::class, 'unassign'])->name('crews.unassign');
+
     Route::get('/assignment/container/{journey}', [ContainerController::class, 'assignment'])->name('containers.assignment');
+    Route::get('/assign/container/{journey}/{container}', [ContainerController::class, 'assign'])->name('containers.assign');
+    Route::get('/unassign/container/{journey}/{container}', [ContainerController::class, 'unassign'])->name('containers.unassign');
+
     Route::get('/journeys/edit/{journey}', [JourneyController::class, 'edit'])->name('journeys.edit');
 
     //Ship system
