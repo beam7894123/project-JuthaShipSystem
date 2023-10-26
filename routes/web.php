@@ -69,10 +69,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/journeys', [JourneyController::class, 'index'])->name('journeys.index');
     Route::get('/journeys/create', [JourneyController::class, 'create'])->name('journeys.create');
     Route::get('/journeys/view/{journey}', [JourneyController::class, 'view'])->name('journeys.view');
-    Route::get('/journeys/edit/{journey}', [JourneyController::class, 'edit'])->name('journeys.edit');
     Route::post('/journeys/store', [JourneyController::class, 'store'])->name('journeys.store');
     Route::put('/journeys/update/{journey}', [JourneyController::class, 'update'])->name('journeys.update');
     Route::get('/journeys/finish/{journey_id}', [JourneyController::class, 'finish'])->name('journeys.finish');
+
+    //assign system
+    Route::get('/assign/ship/{journey}', [ShipController::class, 'assignment'])->name('ships.assignment');
+    Route::get('/assign/crew/{journey}', [UserController::class, 'assignment'])->name('crews.assignment');
+    Route::get('/assign/container/{journey}', [ContainerController::class, 'assignment'])->name('containers.assignment');
+    Route::get('/journeys/edit/{journey}', [JourneyController::class, 'edit'])->name('journeys.edit');
 
     //Ship system
     Route::get('/ships', [ShipController::class, 'index'])->name('ships.index');

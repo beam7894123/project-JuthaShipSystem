@@ -10,11 +10,11 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('images/JUTHA_fav.png') }}">
 
 </head>
-<body>
+<body class="bg-hex-color-010066">
 
     @include('layouts.subviews.navbar')
 
-    <main class="bg-hex-color-010066 mt-2 p-4 h-screen">
+    <main class="mt-2 p-4 h-screen">
         @yield('content')
     </main>
 </body>
