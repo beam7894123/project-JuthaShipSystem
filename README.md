@@ -1,3 +1,38 @@
+## Installing (Build)
+
+- วิธีที่ 1
+1. ทำการ clone ไฟล์จาก github ใน repository นี้ 
+2. ใช้คำสั่ง `make build`
+3. ใช้คำสั่ง `make run` (ต้องเปิดใช้งาน docker ก่อน)
+4. เข้ามาที่เว็บบราวเซอร์แล้วพิมพ์ url `http://localhost/`
+
+---
+
+- วิธีที่ 2
+1. ทำการ clone ไฟล์จาก github ใน repository นี้ 
+2. ใช้คำสั่ง
+```bash
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v "$(pwd):/var/www/html" \
+    -w /var/www/html \
+    laravelsail/php82-composer:latest \
+    composer install --ignore-platform-reqs
+```
+3. Copy `.env.example` และเปลี่ยนชื่อเป็น `.env`
+4. ใช้คำสั่ง เพื่อ generate key และลง yarn
+	- `./vendor/bin/sail artisan key:generate`
+	- `./vendor/bin/sail yarn install`
+5. ใช้คำสั่ง `./vendor/bin/sail up -d` (ต้องเปิดใช้งาน docker ก่อน) 
+6. ใช้คำสั่ง `./vendor/bin/sail yarn dev` เพื่อเปิดใช้งาน yarn
+7. ใช้คำสั่ง เพื่อเชื่อม storage และ migrate
+	- `./vendor/bin/sail artisan storage:link`
+	- `./vendor/bin/sail artisan migrate:fresh --seed`
+4. เข้ามาที่เว็บบราวเซอร์แล้วพิมพ์ url `http://localhost/`
+
+
+---
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
@@ -6,6 +41,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
+
 
 ## About Laravel
 
