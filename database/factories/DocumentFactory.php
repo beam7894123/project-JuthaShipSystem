@@ -17,7 +17,7 @@ class DocumentFactory extends Factory
      */
     public function definition(): array
     {
-        $status = array('PENDING','APPROVED');
+//        $status = array('PENDING','APPROVED');
         $imagePath = array(
             '/images/document/defaultDocument.png',
             '/images/document/fired-from-dominos.jpg',
@@ -30,7 +30,7 @@ class DocumentFactory extends Factory
         return [
             'imagePath' => $imagePath[array_rand($imagePath)],
             'journey_id' => Journey::find(rand(1,10)),
-            'status' => $status[array_rand($status)],
+//            'status' => $status[array_rand($status)],
         ];
     }
 }

@@ -60,8 +60,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/documents', [DocumentController::class, 'index'])->name('documents.index');
     Route::post('/documents/store/{journey}', [DocumentController::class, 'store'])->name('documents.store');
     Route::get('/documents/edit/{document}', [DocumentController::class, 'edit'])->name('documents.edit');
-    Route::put('/documents/update/{journey}/{document}', [DocumentController::class, 'update'])->name('documents.update');
-    Route::get('/documents/destroy/{journey}/{document}', [DocumentController::class, 'destroy'])->name('documents.destroy');
+    Route::put('/documents/update/{document}', [DocumentController::class, 'update'])->name('documents.update');
+//    Route::get('/documents/destroy/{document}', [DocumentController::class, 'destroy'])->name('documents.destroy');
+//    Route::get('/documents/pending/{document}', [DocumentController::class, 'pending'])->name('documents.pending');
+//    Route::get('/documents/approved/{document}', [DocumentController::class, 'approved'])->name('documents.approved');
 
     //Journey system
     Route::get('/journeys', [JourneyController::class, 'index'])->name('journeys.index');

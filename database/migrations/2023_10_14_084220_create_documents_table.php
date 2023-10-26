@@ -16,7 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('imagePath')->default('/images/defaultDocument.png');
             $table->foreignIdFor(\App\Models\Journey::class); //journey_id (fk)
-            $table->enum('status',['PENDING','APPROVED']);
+//            $table->enum('status',['PENDING','APPROVED']);
         });
     }
 
