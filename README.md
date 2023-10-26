@@ -1,4 +1,4 @@
-# SAJuthaShipSystem
+# SA Jutha Ship Management System
 ## Installing (Build)
 
 - วิธีที่ 1
