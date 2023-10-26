@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
 
     //User system
     Route::get('/crews', [UserController::class, 'index'])->name('crews.index');
+    Route::get('/crews/view/{user}', [UserController::class, 'view'])->name('crews.view');
     Route::get('/crews/edit/{user}', [UserController::class, 'edit'])->name('crews.edit');
     Route::get('/crews/pending/{user}', [UserController::class, 'pending'])->name('crews.pending');
     Route::get('/crews/ready/{user}', [UserController::class, 'ready'])->name('crews.ready');

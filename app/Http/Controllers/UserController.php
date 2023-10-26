@@ -22,6 +22,13 @@ class UserController extends Controller
         ]);
     }
 
+    public function view(User $user)
+    {
+        return view('crews.view', [
+            'user' => $user,
+        ]);
+    }
+
     public function edit(User $user)
     {
         return view('crews.edit', [
@@ -33,8 +40,9 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'min:1'],
-            'email' => ['required', 'string', 'min:1'],
-            'password' => ['required', 'string', 'min:5'],
+            'email' => ['required', 'min:1'],
+            'password' => ['required', 'min:5','required_with:confirm_password','same:confirm_password'],
+            'confirm_password' => ['required', 'min:5'],
             'role' => ['required'],
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust validation rules as needed
         ]);

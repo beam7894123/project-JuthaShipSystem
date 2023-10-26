@@ -4,10 +4,11 @@
 @include('alert')
 
 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-    <form method="post" action="{{ route('crews.edit') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
+    <form method="post" action="{{ route('crews.store') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
+        @csrf
         <h1 class="text-4xl mb-6 py-3 text-white">
             <strong>
-                User Information
+                Create New User
             </strong>
         </h1>
         <div class="grid grid-cols-2 gap-6">
@@ -26,21 +27,21 @@
                 <!-- Name Input -->
                 <div class="mt-4">
                     <x-input-label for="name" :value="__('Name')" />
-                    <x-text-input id="name" name="name" type="text" class="mt-1 block w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" :value="old('name', $user->name)" required autofocus autocomplete="name" />
+                    <x-text-input id="name" name="name" type="text" class="mt-1 block w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"  required autofocus autocomplete="name" />
                     <x-input-error class="mt-2" :messages="$errors->get('name')" />
                 </div>
 
                 <!-- Email Input -->
                 <div class="mt-4">
                     <x-input-label for="email" :value="__('Email')" />
-                    <x-text-input id="email" name="email" type="email" class="mt-1 block w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" :value="old('email', $user->email)" required autocomplete="username" />
+                    <x-text-input id="email" name="email" type="email" class="mt-1 block w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"  required autocomplete="username" />
                     <x-input-error class="mt-2" :messages="$errors->get('email')" />
                 </div>
 
                 <!-- Role Dropdown -->
                 <div class="mt-4">
                     <x-input-label for="role" :value="__('Role')" />
-                    <select id="dropdown" name="dropdown" class="w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <select id="role" name="role" class="w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
                         <option value="ADMIN">ADMIN</option>
                         <option value="CAPTAIN">CAPTAIN</option>
                         <option value="CHIEF">CHIEF</option>
@@ -56,8 +57,8 @@
                 </div>
 
                 <div class="mt-4">
-                    <x-input-label for="password" :value="__('Password')" />
-                    <x-text-input id="password" name="password" type="password" class="mt-1 block w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" autocomplete="new-password" />
+                    <x-input-label for="confirm_password" :value="__('Confirm Password')" />
+                    <x-text-input id="confirm_password" name="confirm_password" type="password" class="mt-1 block w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" autocomplete="new-password" />
                     <x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2" />
                 </div>
 
@@ -65,26 +66,16 @@
         </div>
 
         <div class="p-4 flex justify-between">
-            <a href="{{ route('crews.index', ['user' => $user]) }}" class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
+            <a href="{{ route('crews.index') }}" class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
                 <div class="p-2 text-black text-center">
                     < Back
                 </div>
             </a>
-
-            {{--                <form method="POST" action="{{ route('crews.index', ['user' => $user]) }}">--}}
-                {{--                    @csrf--}}
-                {{--                    @method('delete')--}}
-                {{--                    <x-danger-button--}}
-                {{--                        x-data=""--}}
-                {{--                        x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"--}}
-                {{--                    >{{ __('Delete Account') }}</x-danger-button>--}}
-                {{--                </form>--}}
 
             <button type="submit" class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
                 Save >
             </button>
         </div>
     </form>
-    {{--                    @include('crews.partials.delete-user-form')--}}
 </div>
 @endsection
