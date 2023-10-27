@@ -116,9 +116,10 @@ class UserController extends Controller
             $user->imgPath = $imagePath;
         }
 
-        return $user->imgPath;
-
-        $user->role = $request->get('role');
+        if($request->get('role') != null)
+        {
+            $user->role = $request->get('role');
+        }
 
         $user->save();
 

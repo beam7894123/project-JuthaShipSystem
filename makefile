@@ -8,7 +8,6 @@ build:
 
 	@cp .env.example .env
 	@cp -r ./public/images/document/ ./storage/app/public/
-	@cp -r ./public/images/images/ ./storage/app/public/
 
 	@./vendor/bin/sail up -d
 	@./vendor/bin/sail artisan key:generate

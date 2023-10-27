@@ -3,8 +3,13 @@
 @section('content')
     @include('alert')
     <div id="user_list_notAdmin" class="bg-white rounded-md max-w-full mx-32 mt-8">
+        @php
+        $crews = App\Models\User::where('journey_id', $journey->id)->get();
+        $ship = App\Models\Ship::where('id', $journey->ship_id)->first();
+        @endphp
         <div class="bg-[#011147] py-2 px-4">
             <h2 class="text-xl font-semibold text-white">Assign Crew list</h2>
+            <h1 class="text-xl font-semibold text-white">{{ $crews->count() }} / {{ $ship->crew_capacity }}</h1>
         </div>
         <div class="overflow-y-auto max-h-auto">
             <ul class="divide-y divide-gray-200">
@@ -34,6 +39,7 @@
         <p class="text-red-500 text-sm">{{ $message }}</p>
         @enderror
     </div>
+    @if( $crews->count() < $ship->crew_capacity and $users->count() > 0)
     <div id="user_list_notAdmin" class="bg-white rounded-md max-w-full mx-32 mt-8">
         <div class="bg-[#011147] py-2 px-4">
             <h2 class="text-xl font-semibold text-white">Crew list</h2>
@@ -66,6 +72,7 @@
         <p class="text-red-500 text-sm">{{ $message }}</p>
         @enderror
     </div>
+    @endif
 
     <div class="p-4 flex justify-between">
         <a href="{{ route('journeys.view', ['journey' => $journey]) }}" class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">

@@ -9,7 +9,11 @@
             @if( Auth::check() )
                 <div class="w-1/2 pr-4 flex flex-col items-center w-16">
                     <a href="{{ route('crews.view', ['user' => Auth::user() ]) }}">
+                        @if( Auth::user()->imgPath !== null )
                         <img src="{{ asset('storage/' . Auth::user()->imgPath) }}" alt="Profile Picture" class="max-w-full h-1/3 object-contain rounded-full">
+                        @else
+                        <img src="/images/defaultProfile.png" alt="Profile Picture" class="max-w-full h-3/4 object-contain rounded-full">
+                        @endif
                     </a>
                 </div>
                 <div class="mr-4">

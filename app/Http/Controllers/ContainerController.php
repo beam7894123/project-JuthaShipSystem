@@ -132,10 +132,15 @@ class ContainerController extends Controller
 
     public function assignment(Journey $journey)
     {
-        $containers = Container::get();
+        $containers = Container::where('journey_id', null)
+            ->get();
+        $currentcontainers = Container::where('journey_id', $journey->id)
+            ->get();
+
         return view('containers.assignment', [
             'journey' => $journey,
             'containers' => $containers,
+            'currentcontainers' => $currentcontainers,
         ]);
     }
 
@@ -144,12 +149,14 @@ class ContainerController extends Controller
         $container->journey_id = $journey->id;
         $container->save();
 
-        $containers = Container::where('journey_id', null)->get();
-        $currentcontainer = Container::where('id', $journey->container_id)->first();
+        $containers = Container::where('journey_id', null)
+            ->get();
+        $currentcontainers = Container::where('journey_id', $journey->id)
+            ->get();
         return redirect()->route('containers.assignment' , [
             'journey' => $journey,
             'containers' => $containers,
-            'currentcontainer' => $currentcontainer
+            'currentcontainers' => $currentcontainers,
         ])->with('success', 'Your container has been assigned.');
     }
 
@@ -158,12 +165,15 @@ class ContainerController extends Controller
         $container->journey_id = null;
         $container->save();
 
-        $containers = Container::where('journey_id', null)->get();
-        $currentcontainer = Container::where('id', $journey->container_id)->first();
+        $containers = Container::where('journey_id', null)
+            ->get();
+        $currentcontainers = Container::where('journey_id', $journey->id)
+            ->get();
+
         return redirect()->route('containers.assignment' , [
             'journey' => $journey,
             'containers' => $containers,
-            'currentcontainer' => $currentcontainer
+            'currentcontainers' => $currentcontainers,
         ])->with('success', 'Your container has been unassigned.');
     }
 }

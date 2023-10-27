@@ -14,7 +14,7 @@
                 @if( $user->imgPath !== null )
                 <img src="{{ asset('storage/' . $user->imgPath) }}" alt="Profile Picture" class="max-w-full h-3/4 object-contain rounded-full">
                 @else
-                <img src="{{ asset('images/JUTHA_MALEE_SHIP.png') }}" alt="avatar IMG" class="rounded-lg shadow-lg shadow-xl">
+                <img src="/images/defaultProfile.png" alt="avatar IMG" class="rounded-lg shadow-lg shadow-xl">
                 @endif
             </div>
 
