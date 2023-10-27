@@ -11,9 +11,11 @@
         </h1>
         <div class="grid grid-cols-2 gap-6">
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-
-                <!-- Profile Image Upload -->
+                @if( $user->imgPath !== null )
+                <img src="{{ asset('storage/' . $user->imgPath) }}" alt="Profile Picture" class="max-w-full h-3/4 object-contain rounded-full">
+                @else
                 <img src="{{ asset('images/JUTHA_MALEE_SHIP.png') }}" alt="avatar IMG" class="rounded-lg shadow-lg shadow-xl">
+                @endif
             </div>
 
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">

@@ -82,20 +82,26 @@ class UserController extends Controller
     public function update(Request $request , User $user)
     {
         $request->validate([
-            'name' => ['required', 'min:1'],
-            'email' => ['required', 'min:1'],
-            'password' => ['min:5','required_with:confirm_password','same:confirm_password'],
+            'name' => ['min:1'],
+            'email' => ['min:1'],
+            'password' => ['min:5','same:confirm_password'],
             'confirm_password' => ['min:5'],
-            'role' => ['required'],
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust validation rules as needed
         ]);
 
-        $user->name = $request->get('name');
-        $user->email = $request->get('email');
+        if($request->get('name') == null)
+        {
+            $user->name = $request->get('name');
+        }
+        if ($request->get('email') == null)
+        {
+            $user->email = $request->get('email');
+        }
         if($request->get('password') != null)
         {
             $user->password = Hash::make($request->get('password'));
         }
+
 
         if($request->file('image') != null )
         {
@@ -110,15 +116,12 @@ class UserController extends Controller
             $user->imgPath = $imagePath;
         }
 
+        return $user->imgPath;
+
         $user->role = $request->get('role');
-        $user->status = 'PENDING';
 
         $user->save();
 
-        $users = User::where('journey_id', Auth::user()->journey_id)
-            ->where('role', 'CREW')
-            ->get();
-        $usersForAdmin = User::get();
         return redirect()->route('crews.view' , [
             'user' => $user,
         ])->with('success', "The user : " . $user->name . " has been updated.");
