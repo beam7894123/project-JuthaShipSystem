@@ -39,7 +39,7 @@
         </div>
     </div>
 
-    @if( tempcontainers->count() < $ship->container_capacity and $containers->count() > 0)
+    @if( $tempcontainers->count() < $ship->container_capacity and $containers->count() > 0)
     <div id="user_list_notAdmin" class="bg-white rounded-md max-w-full mx-32 mt-8">
         <div class="bg-[#011147] py-2 px-4">
             <h2 class="text-xl font-semibold text-white">Container list</h2>
