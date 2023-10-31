@@ -18,7 +18,7 @@
                 <img src="{{ asset('images/JUTHA_MALEE_SHIP.png') }}" alt="avatar IMG" class="rounded-lg shadow-lg shadow-xl">
                 <div class="mt-4">
                     <label for="avatar" class="text-base font-medium text-gray-700">Profile Image</label>
-                    <input id="avatar" name="avatar" type="file" class="mt-1 block w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" accept="image/*">
+                    <input id="image" name="image" type="file" class="mt-1 block w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" accept="image/*">
                     <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
                 </div>
             </div>

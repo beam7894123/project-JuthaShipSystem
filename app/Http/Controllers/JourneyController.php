@@ -86,11 +86,13 @@ class JourneyController extends Controller
         $users = User::where('journey_id' , $journey->id)->get();
         foreach ($users as $user) {
             $user->journey_id = null;
+            $user->status = "PENDING";
             $user->save();
         }
 
         $ship = Ship::find($journey->ship_id);
         $ship->journey_id = null;
+        $ship->status = "PENDING";
         $ship->save();
 
         return redirect()->route('dashboard')->with('success', 'Your journey has been completed.');

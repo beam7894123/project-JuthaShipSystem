@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use function Illuminate\Events\queueable;
 
 class UserController extends Controller
 {
@@ -45,7 +46,7 @@ class UserController extends Controller
             'password' => ['required', 'min:5','required_with:confirm_password','same:confirm_password'],
             'confirm_password' => ['required', 'min:5'],
             'role' => ['required'],
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust validation rules as needed
+            'image' => 'image|mimes:jpeg,png,jpg,gif', // Adjust validation rules as needed
         ]);
 
         $user = new User();
@@ -86,14 +87,15 @@ class UserController extends Controller
             'email' => ['min:1'],
             'password' => ['min:5','same:confirm_password'],
             'confirm_password' => ['min:5'],
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust validation rules as needed
+            'image' => 'image|mimes:jpeg,png,jpg,gif', // Adjust validation rules as needed
         ]);
 
-        if($request->get('name') == null)
+
+        if($request->get('name') != null)
         {
             $user->name = $request->get('name');
         }
-        if ($request->get('email') == null)
+        if ($request->get('email') != null)
         {
             $user->email = $request->get('email');
         }
@@ -101,7 +103,6 @@ class UserController extends Controller
         {
             $user->password = Hash::make($request->get('password'));
         }
-
 
         if($request->file('image') != null )
         {
@@ -115,6 +116,7 @@ class UserController extends Controller
             }
             $user->imgPath = $imagePath;
         }
+
 
         if($request->get('role') != null)
         {
