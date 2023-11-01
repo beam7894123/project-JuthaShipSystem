@@ -148,7 +148,9 @@ class ShipController extends Controller
     {
         $journey->ship_id = null;
         $journey->save();
+
         $ship->journey_id = null;
+        $ship->save();
 
         $ships = Ship::where('journey_id', null)->get();
         $currentship = Ship::where('id', $journey->ship_id)->first();

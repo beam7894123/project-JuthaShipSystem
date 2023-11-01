@@ -92,7 +92,7 @@ class JourneyController extends Controller
 
         $ship = Ship::find($journey->ship_id);
         $ship->journey_id = null;
-        $ship->status = "PENDING";
+        $ship->engine_status = "PENDING";
         $ship->save();
 
         return redirect()->route('dashboard')->with('success', 'Your journey has been completed.');

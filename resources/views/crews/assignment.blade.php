@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
+@if( $journey->ship_id != null)
     @include('alert')
     <div id="user_list_notAdmin" class="bg-white rounded-md max-w-full mx-32 mt-8">
         @php
@@ -73,6 +74,9 @@
         @enderror
     </div>
     @endif
+@else
+<h1 class="text-2xl mb-1 py-3 pl-12 text-white"><strong>Please assign ship to current journey first!</strong></h1>
+@endif
 
     <div class="p-4 flex justify-between">
         <a href="{{ route('journeys.view', ['journey' => $journey]) }}" class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
@@ -81,4 +85,5 @@
             </div>
         </a>
     </div>
+
 @endsection
