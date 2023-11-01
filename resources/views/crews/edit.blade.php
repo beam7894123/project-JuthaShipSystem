@@ -63,7 +63,7 @@
                         <!-- Email Input -->
                         <div class="mt-4">
                             <x-input-label for="email" :value="__('Email')" />
-                            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" :value="old('email', $user->email)" required autocomplete="username" />
+                            <label class="text-base font-medium text-gray-700">{{ $user->email }}</label>
                             <x-input-error class="mt-2" :messages="$errors->get('email')" />
                         </div>
 

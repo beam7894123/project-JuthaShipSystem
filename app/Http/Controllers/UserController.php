@@ -84,7 +84,6 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => ['min:1'],
-            'email' => ['min:1', 'unique:'.User::class],
             'password' => ['min:5','same:confirm_password'],
             'confirm_password' => ['min:5'],
             'image' => 'image|mimes:jpeg,png,jpg,gif', // Adjust validation rules as needed
@@ -94,10 +93,6 @@ class UserController extends Controller
         if($request->get('name') != null)
         {
             $user->name = $request->get('name');
-        }
-        if ($request->get('email') != null)
-        {
-            $user->email = $request->get('email');
         }
         if($request->get('password') != null)
         {
