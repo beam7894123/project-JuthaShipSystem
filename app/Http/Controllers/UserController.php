@@ -42,7 +42,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'min:1'],
-            'email' => ['required', 'min:1'],
+            'email' => ['required', 'min:1', 'unique:'.User::class],
             'password' => ['required', 'min:5','required_with:confirm_password','same:confirm_password'],
             'confirm_password' => ['required', 'min:5'],
             'role' => ['required'],
@@ -84,7 +84,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => ['min:1'],
-            'email' => ['min:1'],
+            'email' => ['min:1', 'unique:'.User::class],
             'password' => ['min:5','same:confirm_password'],
             'confirm_password' => ['min:5'],
             'image' => 'image|mimes:jpeg,png,jpg,gif', // Adjust validation rules as needed
