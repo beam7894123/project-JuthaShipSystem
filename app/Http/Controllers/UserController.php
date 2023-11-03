@@ -125,7 +125,7 @@ class UserController extends Controller
 
         return redirect()->route('crews.view' , [
             'user' => $user,
-        ])->with('success', "The user : " . $user->name . " has been updated.");
+        ])->with('success', "The user " . $user->name . " has been updated.");
     }
 
     public function pending(User $user)
