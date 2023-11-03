@@ -19,6 +19,7 @@ class UserSeeder extends Seeder
         $user->email= 'admin@gmail.com';
         $user->password = Hash::make("password");
         $user->role = 'ADMIN';
+        $user->journey_id = 0;
         $user->save();
 
         $user = new User();
