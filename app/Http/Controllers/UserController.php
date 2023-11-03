@@ -59,7 +59,10 @@ class UserController extends Controller
             $imagePath = $request->file('image')->store('userImages', 'public'); // Store image in 'public/images' folder
             $user->imgPath = $imagePath;
         }
-
+        if($request->get('role') == 'ADMIN')
+        {
+            $user->journey_id = 0;
+        }
         $user->role = $request->get('role');
         $user->status = 'PENDING';
 
