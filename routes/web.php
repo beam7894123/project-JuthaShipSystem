@@ -72,6 +72,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/journeys/store', [JourneyController::class, 'store'])->name('journeys.store');
     Route::put('/journeys/update/{journey}', [JourneyController::class, 'update'])->name('journeys.update');
     Route::get('/journeys/finish/{journey_id}', [JourneyController::class, 'finish'])->name('journeys.finish');
+    Route::get('/journeys/ongoing/{journey_id}', [JourneyController::class, 'ongoing'])->name('journeys.ongoing');
 
     //assign system
     Route::get('/assignment/ship/{journey}', [ShipController::class, 'assignment'])->name('ships.assignment');

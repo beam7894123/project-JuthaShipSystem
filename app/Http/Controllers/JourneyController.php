@@ -77,6 +77,15 @@ class JourneyController extends Controller
         ])->with('success', 'Your journey has been updated.');
     }
 
+    public function ongoing(String $journey_id)
+    {
+        $journey = Journey::find($journey_id);
+        $journey->status = "ONGOING";
+        $journey->save();
+
+        return redirect()->route('dashboard')->with('success', 'Your journey has been started.');
+    }
+
     public function finish(String $journey_id)
     {
         $journey = Journey::find($journey_id);
