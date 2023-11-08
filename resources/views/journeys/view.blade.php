@@ -18,16 +18,27 @@
                 Containers
             </div>
         </a>
+        @if($journey->status == 'UPCOMING')
         <a href="{{ route('crews.assignment', [ 'journey' => $journey ]) }}" class="block p-10 text-5xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
             <div class="p-6 text-black text-center">
                 Crew
             </div>
         </a>
+        @endif
+        @if($journey->status == 'UPCOMING')
         <a href="{{ route('journeys.edit', [ 'journey' => $journey ]) }}" class="block p-10 text-5xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
             <div class="p-6 text-black text-center">
                 Edit Journey
             </div>
         </a>
+        @else
+        <a href="{{ route('journeys.edit', [ 'journey' => $journey ]) }}" class="block p-10 text-5xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
+            <div class="p-6 text-black text-center">
+                Journey Details
+            </div>
+        </a>
+        @endif
+    </div>
 
         <div class="p-4 flex justify-between">
             <a href="{{ route('journeys.index') }}" class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4">
