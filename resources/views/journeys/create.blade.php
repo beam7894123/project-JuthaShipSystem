@@ -14,12 +14,12 @@
                 <div class="p-4">
                     <div class="grid grid-cols-2 items-center p-6 text-3xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4 text-black">
                         <label for="start_date" class="text-xl font-medium text-gray-900 block mb-2">Start Date</label>
-                        <input id="start_date" type="date" name="start_date" value="<?php echo date('Y-m-d'); ?>" />
+                        <input id="start_date" type="datetime-local" name="start_date" value="<?php echo date('Y-m-d\TH:i'); ?>" />
                     </div>
 
                     <div class="grid grid-cols-2 items-center p-6 text-3xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4 text-black">
                         <label for="start_date" class="text-xl font-medium text-gray-900 block mb-2">Arrive Date</label>
-                        <input id="arrive_date" type="date" name="arrive_date" />
+                        <input id="arrive_date" type="datetime-local" name="arrive_date" />
                     </div>
 
                     <div class="grid grid-cols-2 items-center p-6 text-3xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4 text-black">

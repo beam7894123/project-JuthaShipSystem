@@ -16,7 +16,7 @@
                     <div class="grid grid-cols-2 items-center p-6 text-3xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4 text-black">
                         <label for="start_date" class="text-xl font-medium text-gray-900 block mb-2">Start Date</label>
                         @php
-                            $formattedStartDate = date('Y-m-d', strtotime($journey->start_date));
+                            $formattedStartDate = date('Y-m-d\TH:i', strtotime($journey->start_date))
                         @endphp
                         <input id="start_date" type="datetime-local" name="start_date" value="{{ $formattedStartDate }}" />
                     </div>
@@ -24,9 +24,9 @@
                     <div class="grid grid-cols-2 items-center p-6 text-3xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4 text-black">
                         <label for="start_date" class="text-xl font-medium text-gray-900 block mb-2">Arrive Date</label>
                         @php
-                            $formattedStartDate = date('Y-m-d', strtotime($journey->arrive_date));
+                            $formattedStartDate = date('Y-m-d\TH:i', strtotime($journey->arrive_date))
                         @endphp
-                        <input id="arrive_date" type="date" name="arrive_date" value="{{ $formattedStartDate }}" />
+                        <input id="arrive_date" type="datetime-local" name="arrive_date" value="{{ $formattedStartDate }}" />
                     </div>
 
                     <div class="grid grid-cols-2 items-center p-6 text-3xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4 text-black">
