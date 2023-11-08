@@ -18,7 +18,7 @@
                 <li class="flex items-center py-4 px-6 hover:bg-[#819eff] transition duration-300">
                     <div class="flex-1">
                         <a href="{{ route('journeys.view', ['journey' => $journey]) }}">
-                            <h3 class="text-3xl font-medium text-gray-800">{{ $journey->destination ?? 'Not Assigned yet' }}</h3>
+                            <h3 class="text-3xl font-medium text-gray-800">{{ $journey->destination ?? 'Not Assigned yet' }} ( {{ $journey->status }} )</h3>
                             <h3 class="text-xl font-sm text-gray-800">Journey ID: {{ $journey->id }}</h3>
                             <h3 class="text-xl font-sm text-gray-800">{{ $journey->start_date ?? 'No Date' }} - {{ $journey->arrive_date ?? '' }}</h3>
                         </a>

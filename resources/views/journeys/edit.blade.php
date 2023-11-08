@@ -18,7 +18,7 @@
                         @php
                             $formattedStartDate = date('Y-m-d', strtotime($journey->start_date));
                         @endphp
-                        <input id="start_date" type="date" name="start_date" value="{{ $formattedStartDate }}" />
+                        <input id="start_date" type="datetime-local" name="start_date" value="{{ $formattedStartDate }}" />
                     </div>
 
                     <div class="grid grid-cols-2 items-center p-6 text-3xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4 text-black">

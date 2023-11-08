@@ -9,7 +9,7 @@
         <div class="border-b border-gray-400 mt-4"></div>
         <div class="mx-6 my-4 flex flex-col">
             <!-- INSERT HERE!!! -->
-            @if(Auth::user()->role == 'CAPTAIN')
+            @if(Auth::user()->role == 'CAPTAIN' && ($journey->status !== 'COMPLETED' || $journey->status !== 'CANCELLED') )
             <form method="POST" action="{{route('documents.store' , ['journey' => $journey ])}}" enctype="multipart/form-data">
                 @csrf
                 @method('POST')

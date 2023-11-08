@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('journeys', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->date('start_date');
-            $table->date('arrive_date');
+            $table->dateTime('start_date');
+            $table->dateTime('arrive_date');
             $table->string('destination');
             $table->enum('status',['UPCOMING','ONGOING','COMPLETED','CANCELLED']);
             $table->foreignIdFor(\App\Models\Ship::class)->nullable(); //ship_id

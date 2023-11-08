@@ -19,6 +19,7 @@
                             <p class="text-gray-600 text-base"></p>
                         </div>
                         <span class="text-gray-400"></span>
+                        @if($journey->status == 'UPCOMING')
                         <div class="grid grid-cols-2 gap-4 p-4">
                                 <a href="{{ route('ships.unassign', ['journey' => $journey, 'ship' => $currentship ]) }}"
                                    class="block p-2 text-xl bg-white overflow-hidden shadow-sm sm:rounded-lg bg-[#c0cfff] hover:bg-red-500 transition duration-300 m-4">
@@ -27,6 +28,7 @@
                                     </div>
                                 </a>
                         </div>
+                        @endif
                     </li>
             </ul>
         </div>
@@ -35,6 +37,7 @@
         @enderror
     </div>
 @endif
+@if(!$currentship)
     <div id="user_list_notAdmin" class="bg-white rounded-md max-w-full mx-32 mt-8">
         <div class="bg-[#011147] py-2 px-4">
             <h2 class="text-xl font-semibold text-white">Ship List</h2>
@@ -63,6 +66,7 @@
                 @endforeach
             </ul>
         </div>
+        @endif
         @error('user')
         <p class="text-red-500 text-sm">{{ $message }}</p>
         @enderror

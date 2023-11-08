@@ -3,7 +3,7 @@
 @section('content')
     @include('alert')
 
-    <h1 class="text-4xl mb-6 py-3 pl-12 text-white"><strong>You are Managing Journey ID: {{ $journey->id }}</strong></h1>
+    <h1 class="text-4xl mb-6 py-3 pl-12 text-white"><strong>You are Managing Journey ID: {{ $journey->id }} ({{ $journey->status}})</strong></h1>
     <h2 class="text-2xl mb-1 py-3 pl-12 text-white"><strong>Destination: {{ $journey->destination  ?? 'Not Assigned yet' }}</strong></h2>
     <h2 class="text-2xl mb-6 py-3 pl-12 text-white"><strong>{{ $journey->start_date ?? 'No Date' }} - {{ $journey->arrive_date ?? '' }}</strong></h2>
 
