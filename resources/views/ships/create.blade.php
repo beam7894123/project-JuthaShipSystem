@@ -13,21 +13,21 @@
                         <!-- Input zone for Model -->
                         <div class="grid grid-cols-2 items-center p-6 text-3xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4 text-black">
                             <div class="text-center font-semibold mb-4">Ship Model</div>
-                            <input type="text" id="model" name="model" class="block p-4 bg-white border rounded-md focus:outline-none focus:ring-2 focus:ring-[#c0cfff] " placeholder="Model">
+                            <input type="text" id="model" name="model" class="block p-4 bg-white border rounded-md focus:outline-none focus:ring-2 focus:ring-[#c0cfff] " placeholder="Model" value="{{ old('model') }}"/>
                             <x-input-error class="mt-2" :messages="$errors->get('model')" />
                         </div>
 
                         <!-- Input zone for Crew Capacity -->
                         <div class="grid grid-cols-2 items-center p-6 text-3xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4 text-black">
                             <div class="text-center font-semibold mb-4">Crew Capacity</div>
-                            <input type="integer" id="crew_capacity" name="crew_capacity" id="crew_capacity" class="block w-full p-4 bg-white border rounded-md focus:outline-none focus:ring-2 focus:ring-[#c0cfff]" placeholder="Crew Capacity"/>
+                            <input type="integer" id="crew_capacity" name="crew_capacity" id="crew_capacity" class="block w-full p-4 bg-white border rounded-md focus:outline-none focus:ring-2 focus:ring-[#c0cfff]" placeholder="Crew Capacity" value="{{ old('crew_capacity') }}"/>
                             <x-input-error class="mt-2" :messages="$errors->get('crew_capacity')" />
                         </div>
 
                         <!-- Input zone for Container -->
                         <div class="grid grid-cols-2 items-center p-6 text-3xl bg-white overflow-hidden shadow-sm sm:rounded-lg hover:bg-[#c0cfff] transition duration-300 m-4 text-black">
                             <div class="text-center font-semibold mb-4">Container Capacity</div>
-                            <input type="integer" id="container_capacity" name="container_capacity" id="container_capacity" class="block w-full p-4 bg-white border rounded-md focus:outline-none focus:ring-2 focus:ring-[#c0cfff]" placeholder="Container Capacity"/>
+                            <input type="integer" id="container_capacity" name="container_capacity" id="container_capacity" class="block w-full p-4 bg-white border rounded-md focus:outline-none focus:ring-2 focus:ring-[#c0cfff]" placeholder="Container Capacity" value="{{ old('container_capacity') }}"/>
                             <x-input-error class="mt-2" :messages="$errors->get('container_capacity')" />
                         </div>
                     </div>
