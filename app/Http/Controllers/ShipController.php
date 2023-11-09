@@ -47,8 +47,8 @@ class ShipController extends Controller
     {
         $request->validate([
             'model' => ['required', 'string', 'min:1'],
-            'container_capacity' => ['required','integer', 'min:1'],
-            'crew_capacity' => ['required','integer' ,'min:1']
+            'container_capacity' => ['required','integer', 'min:1', 'max:300'],
+            'crew_capacity' => ['required','integer' ,'min:1', 'max:100'],
         ]);
 
         $ship = New Ship();
@@ -71,8 +71,8 @@ class ShipController extends Controller
     {
         $request->validate([
             'model' => ['required', 'string', 'min:1'],
-            'container_capacity' => ['required','integer', 'min:1'],
-            'crew_capacity' => ['required','integer' ,'min:1']
+            'container_capacity' => ['required','integer', 'min:1' , 'max:300'],
+            'crew_capacity' => ['required','integer' ,'min:1', 'max:100'],
         ]);
 
         $ship->model = $request->get('model');
