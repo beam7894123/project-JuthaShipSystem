@@ -1,4 +1,9 @@
 # SA Jutha Ship Management System
+
+![loginimage](img/login.png)
+[Paper of this projects](https://docs.google.com/document/d/e/2PACX-1vT1mbigu_w7nawGock8oEq5nctf8pZ9Hroiiv3dD1DUMwT9YaX_7jlHOOuWPP2EQVTor2Z9DXM7mEci/pub)
+<!-- backup in  /img/SA-GROUP7-DOCS.docx -->
+
 ## Installing (Build)
 
 - วิธีที่ 1
